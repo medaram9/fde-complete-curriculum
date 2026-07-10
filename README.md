@@ -1,6 +1,6 @@
-# 🧭 Forward Deployed Engineer — Complete Free Curriculum
+# 🧭 TheSaarathiAI Career Pathfinder — 5 Free Career Tracks
 
-Paid FDE courses charge thousands of dollars and teach 3 modules. This teaches everything. Free.
+Paid courses charge thousands of dollars and gatekeep the good stuff. This teaches complete career tracks — free, verified, and built from original practitioner content.
 
 > 💻 **Interactive version:** [**Open the live preview →**](https://medaram9.github.io/TheSaarathiAI-Career-PathFinder/FDE-Pathfinder-By_TheSaarathiai-Preview.html) — includes skill checker, T-shaped skills tracker, and portfolio guide. (Or download [FDE-Pathfinder-By_TheSaarathiai-Preview.html](./FDE-Pathfinder-By_TheSaarathiai-Preview.html) and open it locally.)
 > 🖼️ **One-pager:** [FDE-Pathfinder-OnePager_By_TheSaarathiai.png](./FDE-Pathfinder-OnePager_By_TheSaarathiai.png) — shareable image for social posts.
@@ -10,6 +10,18 @@ Paid FDE courses charge thousands of dollars and teach 3 modules. This teaches e
 ![Resources](https://img.shields.io/badge/Verified%20Links-90%2B-orange)
 ![Cost](https://img.shields.io/badge/Cost-%240-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-purple)
+
+## Available Career Tracks
+
+| Track | Content | Modules | Hours | Open |
+|---|---|---|---|---|
+| 🚀 Forward Deployed Engineer | AI · LangGraph · Vertex AI · MCP · Azure Foundry · Cost · Security | 15 | ~168 hrs | [Open](./FDE-Pathfinder-By_TheSaarathiai-Preview.html) |
+| 🌐 Network Engineer | Cisco · Juniper · Palo Alto · F5 · ACI · GCP | 14 | ~120 hrs | [Open](./Network-Pathfinder-By_TheSaarathiai-Preview.html) |
+| ⚙️ DevOps Engineer | Linux · Jenkins · Docker · K8s · Terraform · Ansible | 10 | ~35 hrs | [Open](./DevOps-Pathfinder-By_TheSaarathiai-Preview.html) |
+| 🐍 Full Stack Python | Python Core · OOP · Decorators · AI · Networking | 8 | ~20 hrs | [Open](./Python-Pathfinder-By_TheSaarathiai-Preview.html) |
+| 📊 Data Engineer | Spark · Kafka · Airflow · dbt · AWS · GCP | 12 | ~80 hrs | [Open](./DataEngineer-Pathfinder-By_TheSaarathiai-Preview.html) |
+
+The rest of this README documents the flagship **Forward Deployed Engineer** track in full depth. Each other track has its own self-contained interactive page (linked above) with the same skill checker, T-shaped skills tracker, and portfolio guide.
 
 ## What is a Forward Deployed Engineer?
 

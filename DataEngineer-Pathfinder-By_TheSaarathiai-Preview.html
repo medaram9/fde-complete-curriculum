@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Engineer Curriculum — TheSaarathiAI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #06070A;
+  --bg-elevated: #101319;
+  --bg-elevated-2: #161A22;
+  --border: rgba(255,255,255,0.09);
+  --border-strong: rgba(255,255,255,0.16);
+  --text: #F3F5F8;
+  --text-secondary: #9BA9C4;
+  --text-tertiary: #6C7791;
+  --blue: #3B9BFF;
+  --blue-light: rgba(59,155,255,0.14);
+  --green: #34D399;
+  --green-light: rgba(52,211,153,0.14);
+  --amber: #FFAC0A;
+  --amber-light: rgba(255,172,10,0.16);
+  --purple: #A78BFA;
+  --purple-light: rgba(167,139,250,0.16);
+  --teal: #22D3EE;
+  --teal-light: rgba(34,211,238,0.14);
+  --red: #FB7185;
+  --red-light: rgba(251,113,133,0.14);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+/* HEADER */
+.header { position: relative; overflow: hidden; background:
+    radial-gradient(900px 420px at 12% -10%, rgba(255,172,10,0.16), transparent 60%),
+    radial-gradient(900px 460px at 88% 0%, rgba(59,155,255,0.20), transparent 60%),
+    var(--bg);
+  color: var(--text); padding: 3rem 2rem 2.5rem; border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 1000px; margin: 0 auto; position: relative; }
+.header-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(59,155,255,0.12); border: 1px solid rgba(59,155,255,0.3); color: #BFDBFF; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: var(--radius-pill); margin-bottom: 1.25rem; letter-spacing: .04em; text-transform: uppercase; }
+.header h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.15; margin-bottom: .5rem; color: var(--text); }
+.header-sub { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 500px; }
+.stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem 1rem; }
+.stat-n { font-size: 1.75rem; font-weight: 700; color: #6CB4FF; }
+.stat-l { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+/* ROADMAP */
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); margin-bottom: .75rem; margin-top: 2rem; }
+.section-label:first-child { margin-top: 0; }
+.roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; background: var(--bg-elevated); }
+.rp { padding: 1rem .875rem; border-right: 1px solid var(--border); }
+.rp:last-child { border-right: none; }
+.rp-phase { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .35rem; }
+.rp-title { font-size: 13px; font-weight: 600; margin-bottom: .25rem; color: var(--text); }
+.rp-skills { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+.rp-1 { background: linear-gradient(180deg, rgba(59,155,255,0.12), transparent); } .rp-1 .rp-phase { color: var(--blue); }
+.rp-2 { background: linear-gradient(180deg, rgba(52,211,153,0.12), transparent); } .rp-2 .rp-phase { color: var(--green); }
+.rp-3 { background: linear-gradient(180deg, rgba(34,211,238,0.12), transparent); } .rp-3 .rp-phase { color: var(--teal); }
+.rp-4 { background: linear-gradient(180deg, rgba(255,172,10,0.14), transparent); } .rp-4 .rp-phase { color: var(--amber); }
+.rp-5 { background: linear-gradient(180deg, rgba(167,139,250,0.14), transparent); } .rp-5 .rp-phase { color: var(--purple); }
+
+/* TABS */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; position: sticky; top: 12px; z-index: 5; }
+.tab { padding: .65rem 1.25rem; font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); border-radius: var(--radius-pill); transition: all .15s; }
+.tab:hover { color: var(--text); border-color: var(--border-strong); box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+.tab.active { color: #fff; font-weight: 600; background: linear-gradient(135deg, rgba(59,155,255,0.22), rgba(255,172,10,0.14)); border-color: rgba(59,155,255,0.55); box-shadow: 0 0 0 1px rgba(59,155,255,0.3), 0 6px 20px rgba(59,155,255,0.18); }
+.section-block { scroll-margin-top: 16px; margin-bottom: 2.5rem; }
+
+/* GAP BANNER */
+.gap-banner { background: var(--amber-light); border: 1px solid rgba(255,172,10,0.3); border-left: 4px solid var(--amber); border-radius: var(--radius-sm); padding: .875rem 1rem; margin-bottom: 1.25rem; font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+.gap-banner strong { color: var(--amber); }
+
+/* MODULE CARDS */
+.mod { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; background: var(--bg-elevated); transition: box-shadow .15s, border-color .15s; }
+.mod:hover { border-color: rgba(59,155,255,0.4); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.mod-head { display: flex; align-items: center; gap: 12px; padding: .875rem 1.125rem; cursor: pointer; background: transparent; user-select: none; transition: background .15s; }
+.mod-head:hover { background: rgba(59,155,255,0.05); }
+.mod-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.mod-info { flex: 1; min-width: 0; }
+.mod-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.mod-meta { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+.mod-meta::after { content: " · Click to expand"; color: var(--blue); opacity: .75; }
+.mod.open .mod-meta::after { content: " · Click to collapse"; }
+.mod-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.mod-hrs { font-size: 12px; font-weight: 600; color: var(--green); }
+.new-badge { background: var(--amber-light); color: var(--amber); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid rgba(255,172,10,0.35); }
+.mod-chevron { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--blue); background: var(--blue-light); border: 1px solid rgba(59,155,255,0.35); border-radius: 50%; transition: transform .2s; }
+.mod.open .mod-chevron { transform: rotate(180deg); }
+.mod-body { display: none; padding: 1.125rem 1.25rem; border-top: 1px solid var(--border); background: rgba(255,255,255,0.015); }
+.mod.open .mod-body { display: block; }
+
+/* MODULE BODY */
+.body-section { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); margin-bottom: .5rem; margin-top: 1rem; }
+.body-section:first-child { margin-top: 0; }
+.checks { display: grid; gap: 4px; }
+.check-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--text-secondary); padding: .3rem 0; }
+.check-item::before { content: "☐"; color: var(--blue); font-size: 14px; flex-shrink: 0; margin-top: -1px; }
+.res-grid { display: grid; gap: 6px; }
+.res-card { display: flex; align-items: center; gap: 10px; padding: .6rem .875rem; background: var(--bg-elevated-2); border: 1px solid var(--border); border-radius: var(--radius-sm); transition: border-color .15s; }
+.res-card:hover { border-color: var(--blue); }
+.res-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-light); border: 2px solid var(--blue); flex-shrink: 0; }
+.res-info { flex: 1; min-width: 0; }
+.res-name { font-size: 12.5px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.res-src { font-size: 11px; color: #8FA6D9; font-weight: 500; }
+.res-hrs { font-size: 11px; font-weight: 600; color: var(--green); white-space: nowrap; flex-shrink: 0; }
+.res-link { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--blue); text-decoration: none; font-weight: 500; white-space: nowrap; flex-shrink: 0; padding: 3px 10px; background: var(--blue-light); border: 1px solid rgba(59,155,255,0.3); border-radius: var(--radius-pill); transition: background .15s; }
+.res-link:hover { background: rgba(59,155,255,0.26); }
+.capstone { background: linear-gradient(135deg, rgba(167,139,250,0.16), rgba(59,155,255,0.08)); border: 1px solid rgba(167,139,250,0.35); border-radius: var(--radius-sm); padding: .875rem 1rem; margin-top: .5rem; }
+.capstone-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--purple); margin-bottom: .35rem; }
+.capstone-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: .25rem; }
+.capstone-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+/* SKILL CHECK */
+.skill-intro { font-size: 13px; color: var(--text-secondary); margin-bottom: 1.25rem; }
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.25rem; }
+.skill-item label { font-size: 12.5px; font-weight: 500; display: flex; justify-content: space-between; margin-bottom: .4rem; color: var(--text); }
+.skill-item .sk-pct { font-size: 12px; font-weight: 600; color: var(--blue); }
+.skill-item input[type=range] { width: 100%; accent-color: var(--blue); margin-bottom: .3rem; }
+.sk-bar-wrap { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.sk-bar { height: 100%; border-radius: 3px; transition: width .3s, background .3s; }
+.rec-box { border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.rec-focus { background: var(--blue-light); border: 1px solid rgba(59,155,255,0.3); }
+.rec-skip { background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+.rec-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem; }
+.rec-focus .rec-title { color: var(--blue); }
+.rec-skip .rec-title { color: var(--text-tertiary); }
+.rec-item { font-size: 13px; padding: .3rem 0; border-bottom: 1px solid rgba(255,255,255,.06); color: var(--text); }
+.rec-item:last-child { border-bottom: none; }
+.skip-item { font-size: 13px; padding: .3rem 0; border-bottom: 1px solid var(--border); color: var(--text-tertiary); text-decoration: line-through; }
+.skip-item:last-child { border-bottom: none; }
+
+/* T-SHAPED SKILLS */
+.tshape-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+.tshape-col { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.tshape-header { padding: .75rem 1rem; font-size: 13px; font-weight: 600; }
+.th-tech { background: var(--blue-light); color: var(--blue); }
+.th-human { background: var(--green-light); color: var(--green); }
+.tshape-list { padding: .5rem 0; }
+.tshape-item { display: flex; align-items: center; gap: 8px; padding: .4rem 1rem; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 12.5px; color: var(--text-secondary); }
+.tshape-item:last-child { border-bottom: none; }
+.ttag { font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: var(--radius-pill); margin-left: auto; white-space: nowrap; }
+.ttag-code { background: var(--blue-light); color: var(--blue); }
+.ttag-infra { background: var(--teal-light); color: var(--teal); }
+.ttag-ai { background: var(--purple-light); color: var(--purple); }
+.ttag-data { background: var(--amber-light); color: var(--amber); }
+.ttag-people { background: var(--green-light); color: var(--green); }
+.ttag-mindset { background: var(--red-light); color: var(--red); }
+.ttag-career { background: var(--green-light); color: var(--green); }
+.interview-box { background: var(--amber-light); border: 1px solid rgba(255,172,10,0.3); border-left: 4px solid var(--amber); border-radius: var(--radius-sm); padding: 1rem 1.125rem; }
+.interview-box h4 { font-size: 12.5px; font-weight: 700; color: var(--amber); margin-bottom: .4rem; }
+.interview-box p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+
+/* PORTFOLIO */
+.port-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+.port-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.port-card-header { padding: .75rem 1rem; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.pc-1 { background: var(--blue-light); color: var(--blue); }
+.pc-2 { background: var(--green-light); color: var(--green); }
+.pc-3 { background: var(--amber-light); color: var(--amber); }
+.pc-4 { background: var(--purple-light); color: var(--purple); }
+.port-card-body { padding: .75rem 1rem; }
+.port-card-body li { font-size: 12px; color: var(--text-secondary); line-height: 1.7; margin-left: 1rem; }
+
+/* FOOTER */
+.footer { background: var(--bg); color: var(--text-tertiary); text-align: center; padding: 2rem; font-size: 12px; margin-top: 3rem; border-top: 1px solid var(--border); }
+.footer a { color: var(--text-secondary); text-decoration: none; }
+
+/* TRACK SELECTOR */
+.track-selector-wrap { margin-bottom: 2rem; }
+.track-selector-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: .75rem; }
+.track-selector-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.track-card { display: block; text-decoration: none; border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; transition: border-color .15s, background .15s; background: var(--bg-elevated); }
+.track-card:hover { border-color: var(--blue); background: rgba(59,155,255,0.06); }
+.track-card.active { border-color: var(--blue); background: rgba(59,155,255,0.14); box-shadow: 0 0 0 1px rgba(59,155,255,0.25); }
+.track-icon { font-size: 22px; margin-bottom: 6px; display: block; }
+.track-name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.track-meta { font-size: 10px; color: var(--text-tertiary); line-height: 1.4; }
+
+@media (max-width: 700px) {
+  .roadmap { grid-template-columns: 1fr 1fr; }
+  .stat-row { grid-template-columns: repeat(2,1fr); }
+  .skill-grid { grid-template-columns: 1fr; }
+  .tshape-grid { grid-template-columns: 1fr; }
+  .port-grid { grid-template-columns: 1fr; }
+  .track-selector-grid { grid-template-columns: repeat(2,1fr); }
+  .header h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">✓ 100% Free · No Paywalls · TheSaarathiAI Career Track</div>
+    <h1>Data Engineer<br>Curriculum</h1>
+    <p class="header-sub">From SQL to production data pipelines. AWS · GCP · Spark · Kafka · Airflow · dbt · Terraform. Built from real enterprise deployments.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-n">12</div><div class="stat-l">Modules</div></div>
+      <div class="stat"><div class="stat-n">~80</div><div class="stat-l">Free hours</div></div>
+      <div class="stat"><div class="stat-n">Free</div><div class="stat-l">Resources</div></div>
+      <div class="stat"><div class="stat-n">$0</div><div class="stat-l">Cost</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="track-selector-wrap">
+    <div class="track-selector-label">Choose your career track</div>
+    <div class="track-selector-grid">
+      <a class="track-card" href="FDE-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🚀</span><div class="track-name">Forward Deployed Engineer</div><div class="track-meta">15 modules · ~168 hrs · AI + Cloud</div></a>
+      <a class="track-card" href="Network-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🌐</span><div class="track-name">Network Engineer</div><div class="track-meta">14 modules · ~120 hrs · Cisco · Palo Alto · F5</div></a>
+      <a class="track-card" href="DevOps-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">⚙️</span><div class="track-name">DevOps Engineer</div><div class="track-meta">10 modules · Jenkins · Docker · K8s · Terraform</div></a>
+      <a class="track-card" href="Python-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🐍</span><div class="track-name">Full Stack Python</div><div class="track-meta">8 modules · ~20 hrs · Python + AI/Networking</div></a>
+      <a class="track-card active" href="DataEngineer-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">📊</span><div class="track-name">Data Engineer</div><div class="track-meta">Spark · Kafka · Airflow · AWS · GCP</div></a>
+    </div>
+  </div>
+
+  <div class="gap-banner">Data engineering is one of the highest-paying roles in tech in 2026. The gap between tutorial projects and production pipelines is enormous. This curriculum bridges it — SQL to Spark to cloud data platforms to orchestration — using only free resources.</div>
+
+  <div class="section-label">Data engineer roadmap — 4 phases</div>
+  <div class="roadmap" style="grid-template-columns:repeat(4,1fr)">
+    <div class="rp rp-1"><div class="rp-phase">Phase 1</div><div class="rp-title">Foundations</div><div class="rp-skills">Python · SQL · Linux · Git</div></div>
+    <div class="rp rp-2"><div class="rp-phase">Phase 2</div><div class="rp-title">Data Processing</div><div class="rp-skills">Spark · Hadoop · Kafka · Streaming</div></div>
+    <div class="rp rp-3"><div class="rp-phase">Phase 3</div><div class="rp-title">Cloud Platforms</div><div class="rp-skills">AWS S3/Glue/Athena/Redshift · GCP BigQuery/Dataflow/Pub Sub</div></div>
+    <div class="rp rp-4"><div class="rp-phase">Phase 4</div><div class="rp-title">Orchestration & IaC</div><div class="rp-skills">Airflow · dbt · Terraform · CI/CD for Data</div></div>
+  </div>
+
+  <div class="tabs">
+    <a class="tab" href="#sec-modules" data-target="sec-modules">All modules</a>
+    <a class="tab" href="#sec-assess" data-target="sec-assess">Skill check</a>
+    <a class="tab" href="#sec-tshape" data-target="sec-tshape">T-shaped skills</a>
+    <a class="tab" href="#sec-port" data-target="sec-port">Portfolio</a>
+  </div>
+
+  <div class="section-block" id="sec-modules">
+    <div class="section-label">All Modules</div>
+    <div id="modGrid"></div>
+  </div>
+
+  <div class="section-block" id="sec-assess">
+    <div class="section-label">Skill Check</div>
+    <p class="skill-intro">Rate your current level in each domain. The skill check shows what to skip and what to focus on first — so you spend time on gaps, not on things you already know.</p>
+    <div class="skill-grid" id="skillGrid"></div>
+    <div id="recOut"></div>
+  </div>
+
+  <div class="section-block" id="sec-tshape">
+    <div class="section-label">T-Shaped Skills</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:1.25rem">Data engineers need deep pipeline and platform depth AND broad execution skills across data and business stakeholders. Both are required to get the role and keep it.</p>
+    <div class="tshape-grid">
+      <div class="tshape-col">
+        <div class="tshape-header th-tech">Technical depth</div>
+        <div class="tshape-list">
+          <div class="tshape-item">SQL + window functions + data modeling<span class="ttag ttag-data">data</span></div>
+          <div class="tshape-item">Python pandas/boto3/generators<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Spark RDDs/DataFrames/partitioning<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Kafka topics/consumers/streams<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">AWS S3/Glue/Athena/Redshift<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">GCP BigQuery/Dataflow/Pub Sub<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">Airflow DAGs/operators/sensors<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">dbt models/tests/macros<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Terraform for data infra<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">CI/CD GitHub Actions<span class="ttag ttag-code">code</span></div>
+        </div>
+      </div>
+      <div class="tshape-col">
+        <div class="tshape-header th-human">Execution breadth</div>
+        <div class="tshape-list">
+          <div class="tshape-item">Translating business questions into data models<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Communicating pipeline failures to non-technical stakeholders<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Documentation data dictionaries/lineage diagrams<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Working with data analysts and scientists as customers<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Cost optimization BigQuery/Redshift query patterns<span class="ttag ttag-mindset">mindset</span></div>
+          <div class="tshape-item">Data quality ownership — you own pipeline reliability<span class="ttag ttag-mindset">mindset</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="interview-box">
+      <h4>Data engineering interview reality</h4>
+      <p>Data engineering interviews in 2026 focus heavily on SQL (window functions, query optimization), system design (design a data pipeline for 1B events/day), and Spark internals (why is this job slow?). Practice explaining your end-to-end pipeline projects. The capstone project in this curriculum is designed to be exactly what interviewers want to see.</p>
+    </div>
+  </div>
+
+  <div class="section-block" id="sec-port">
+    <div class="section-label">Portfolio</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:1.25rem">A complete end-to-end pipeline is the single best proof of data engineering skill. Build this and document every stage.</p>
+    <div class="port-grid">
+      <div class="port-card">
+        <div class="port-card-header pc-1">Project 1 — Ingestion and Storage</div>
+        <div class="port-card-body"><ul>
+          <li>Ingest raw data from a public API into S3 or GCS</li>
+          <li>Partition data by date for efficient querying</li>
+          <li>Lifecycle policies for cost control</li>
+          <li>Documented ingestion schedule</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-2">Project 2 — Processing at Scale</div>
+        <div class="port-card-body"><ul>
+          <li>Process raw data with Spark or Dataflow</li>
+          <li>Load transformed data into BigQuery or Redshift</li>
+          <li>Handle schema evolution and partitioning</li>
+          <li>Benchmark job runtime and cost</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-3">Project 3 — Transformation and Quality</div>
+        <div class="port-card-body"><ul>
+          <li>Transform models with dbt</li>
+          <li>dbt tests plus Great Expectations data quality checks</li>
+          <li>Documented data lineage</li>
+          <li>Incremental models for large tables</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-4">Project 4 — Orchestration and IaC</div>
+        <div class="port-card-body"><ul>
+          <li>Orchestrate the full pipeline with an Airflow DAG</li>
+          <li>All infrastructure provisioned with Terraform</li>
+          <li>Retry, backfill, and alerting configured</li>
+          <li>Architecture diagram in the README</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+<div class="footer">
+  Built by TheSaarathiAI · 100% free · No paywalls · <a href="#">thesaarathiai.com</a>
+</div>
+
+<script>
+const MODS = [
+{num:"1",title:"SQL and Data Modeling",phase:1,hrs:"~8 hrs",phaseColor:"blue",
+ checks:["Can you write SELECT, JOIN (inner/left/right/full), GROUP BY, HAVING, and subqueries?","Can you design a normalized schema (1NF/2NF/3NF) from a business requirement?","Do you understand indexes and why they matter for query performance?","Can you write window functions — ROW_NUMBER, RANK, LAG, LEAD, PARTITION BY?"],
+ resources:[
+   {n:"Mode SQL Tutorial — analytics queries (free)",src:"mode.com",url:"https://mode.com/sql-tutorial/",hrs:"4 hrs"},
+   {n:"SQLZoo — interactive SQL exercises (free)",src:"sqlzoo.net",url:"https://sqlzoo.net/wiki/SQL_Tutorial",hrs:"3 hrs"},
+   {n:"PostgreSQL official tutorial (free)",src:"postgresql.org",url:"https://www.postgresql.org/docs/current/tutorial.html",hrs:"3 hrs"}
+ ]},
+{num:"2",title:"Python for Data Engineering",phase:1,hrs:"~6 hrs",phaseColor:"blue",
+ checks:["Can you use pandas to read, clean, filter, and join DataFrames?","Can you write Python scripts that read from APIs and write to files or databases?","Do you understand generators and when to use them over lists for large datasets?","Can you use boto3 to interact with AWS S3?"],
+ resources:[
+   {n:"freeCodeCamp — Python full course (YouTube, free)",src:"youtube.com/@freecodecamp",url:"https://www.youtube.com/@freecodecamp",hrs:"free"},
+   {n:"Pandas official documentation and tutorials (free)",src:"pandas.pydata.org",url:"https://pandas.pydata.org/docs/getting_started/",hrs:"3 hrs"}
+ ]},
+{num:"3",title:"Linux and Git for Data Engineers",phase:1,hrs:"~4 hrs",phaseColor:"blue",
+ checks:["Can you navigate the filesystem, manage cron jobs, and write bash scripts?","Can you use Git for version-controlling data pipelines and dbt projects?"],
+ resources:[
+   {n:"Linux Journey (free, interactive)",src:"linuxjourney.com",url:"https://linuxjourney.com",hrs:"free"},
+   {n:"GitHub Skills (free, interactive)",src:"skills.github.com",url:"https://skills.github.com",hrs:"free"}
+ ]},
+{num:"4",title:"Data Warehousing Concepts",phase:1,hrs:"~4 hrs",phaseColor:"blue",
+ checks:["Do you understand OLTP vs OLAP and when to use each?","Can you explain star schema vs snowflake schema?","Do you understand SCD (Slowly Changing Dimensions) types 1, 2, and 3?","Can you explain partitioning and clustering strategies for large tables?"],
+ resources:[
+   {n:"freeCodeCamp — Data warehouse concepts (YouTube, free)",src:"youtube.com/@freecodecamp",url:"https://www.youtube.com/@freecodecamp",hrs:"free"}
+ ]},
+{num:"5",title:"Apache Spark — Distributed Processing",phase:2,hrs:"~10 hrs",phaseColor:"green",
+ checks:["Can you explain the difference between RDDs, DataFrames, and Datasets?","Do you understand lazy evaluation and why it matters in Spark?","Can you write Spark SQL queries and use DataFrame transformations?","Do you understand partitioning, shuffling, and how to avoid data skew?","Can you configure Spark on a cluster vs local mode?"],
+ resources:[
+   {n:"Apache Spark official documentation (free)",src:"spark.apache.org",url:"https://spark.apache.org/docs/latest/",hrs:"free"},
+   {n:"freeCodeCamp — Apache Spark full course (YouTube, free)",src:"youtube.com/@freecodecamp",url:"https://www.youtube.com/@freecodecamp",hrs:"free"}
+ ]},
+{num:"6",title:"Apache Kafka — Streaming and Event Processing",phase:2,hrs:"~8 hrs",phaseColor:"green",
+ checks:["Can you explain Kafka topics, partitions, consumers, and consumer groups?","Do you understand offset management and at-least-once vs exactly-once delivery?","Can you write a Kafka producer and consumer in Python?","Do you know Kafka Connect and Kafka Streams and when to use each?"],
+ resources:[
+   {n:"Apache Kafka official documentation (free)",src:"kafka.apache.org",url:"https://kafka.apache.org/documentation/",hrs:"free"},
+   {n:"Confluent — free Kafka fundamentals course",src:"confluent.io",url:"https://developer.confluent.io/courses/",hrs:"free"}
+ ]},
+{num:"7",title:"AWS Data Services — S3, Glue, Athena, Redshift",phase:3,hrs:"~10 hrs",phaseColor:"amber",
+ checks:["Can you build an S3 data lake with proper partitioning and lifecycle policies?","Can you write a Glue ETL job to transform and catalog data?","Can you query S3 data using Athena with proper partition pruning?","Do you understand Redshift distribution styles — KEY, ALL, EVEN?","Can you configure IAM roles for cross-service data access?"],
+ resources:[
+   {n:"AWS Skill Builder — Data analytics learning plan (free)",src:"skillbuilder.aws",url:"https://skillbuilder.aws",hrs:"free"},
+   {n:"AWS documentation — Lake Formation, Glue, Athena (free)",src:"docs.aws.amazon.com",url:"https://docs.aws.amazon.com",hrs:"free"}
+ ]},
+{num:"8",title:"GCP Data Services — BigQuery, Dataflow, Pub/Sub",phase:3,hrs:"~10 hrs",phaseColor:"amber",
+ checks:["Can you write efficient BigQuery SQL with partitioning and clustering?","Do you understand BigQuery pricing — on-demand vs flat-rate?","Can you build a Dataflow pipeline using Apache Beam?","Do you understand Pub/Sub topics, subscriptions, and push vs pull delivery?","Can you use BigQuery Data Transfer Service for automated ingestion?"],
+ resources:[
+   {n:"Google Cloud Skills Boost — Data Engineer path (free)",src:"cloudskillsboost.google",url:"https://cloudskillsboost.google",hrs:"free"},
+   {n:"BigQuery documentation (free)",src:"cloud.google.com",url:"https://cloud.google.com/bigquery/docs",hrs:"free"}
+ ]},
+{num:"9",title:"Apache Airflow — Workflow Orchestration",phase:4,hrs:"~8 hrs",phaseColor:"purple",
+ checks:["Can you write a DAG with tasks, dependencies, and schedules?","Do you understand XComs, sensors, and trigger rules?","Can you use Airflow operators — PythonOperator, BashOperator, BigQueryOperator?","Do you know how to backfill, retry, and monitor DAGs?","Can you set up Airflow with Docker Compose locally?"],
+ resources:[
+   {n:"Apache Airflow official documentation (free)",src:"airflow.apache.org",url:"https://airflow.apache.org/docs/",hrs:"free"},
+   {n:"Astronomer — free Airflow learning resources",src:"astronomer.io",url:"https://www.astronomer.io/learn/",hrs:"free"}
+ ]},
+{num:"10",title:"dbt — Data Transformation",phase:4,hrs:"~6 hrs",phaseColor:"purple",
+ checks:["Can you write dbt models, tests, and documentation?","Do you understand the dbt DAG and how models depend on each other?","Can you use dbt macros and Jinja templating?","Do you know the difference between dbt Core (free) and dbt Cloud?","Can you run incremental models for large datasets?"],
+ resources:[
+   {n:"dbt official documentation (free)",src:"docs.getdbt.com",url:"https://docs.getdbt.com",hrs:"free"},
+   {n:"dbt Learn — free interactive courses",src:"learn.getdbt.com",url:"https://learn.getdbt.com",hrs:"free"}
+ ]},
+{num:"11",title:"Terraform for Data Infrastructure",phase:4,hrs:"~4 hrs",phaseColor:"purple",
+ checks:["Can you provision BigQuery datasets, S3 buckets, and Redshift clusters with Terraform?","Do you understand Terraform state management for data infrastructure?","Can you use Terraform modules to create reusable data platform components?"],
+ resources:[
+   {n:"HashiCorp Learn — Terraform tutorials (free)",src:"developer.hashicorp.com",url:"https://developer.hashicorp.com/terraform/tutorials",hrs:"free"}
+ ]},
+{num:"12",title:"CI/CD and Testing for Data Pipelines",phase:4,hrs:"~4 hrs",phaseColor:"purple",
+ checks:["Can you write unit tests for Spark transformations?","Can you set up a GitHub Actions pipeline that runs dbt tests on PR?","Do you understand data quality testing — Great Expectations or dbt tests?","Can you implement a CI/CD pipeline for an Airflow DAG deployment?"],
+ resources:[
+   {n:"Great Expectations documentation (free)",src:"greatexpectations.io",url:"https://docs.greatexpectations.io",hrs:"free"},
+   {n:"GitHub Skills — GitHub Actions (free)",src:"skills.github.com",url:"https://skills.github.com",hrs:"free"}
+ ],
+ capstone:{t:"Build an end-to-end data pipeline",d:"Ingest raw data from a public API into S3 or GCS. Process it with Spark or Dataflow. Load into BigQuery or Redshift. Transform with dbt. Orchestrate with Airflow DAG. Add dbt tests and Great Expectations data quality checks. Provision all infrastructure with Terraform."}}
+];
+
+const phaseColors = {
+  blue: {bg:"rgba(59,155,255,0.16)",fg:"#6CB4FF"},
+  green: {bg:"rgba(52,211,153,0.16)",fg:"#34D399"},
+  teal: {bg:"rgba(34,211,238,0.16)",fg:"#22D3EE"},
+  amber: {bg:"rgba(255,172,10,0.18)",fg:"#FFAC0A"},
+  purple: {bg:"rgba(167,139,250,0.18)",fg:"#A78BFA"}
+};
+
+function buildMods() {
+  const g = document.getElementById('modGrid');
+  MODS.forEach(m => {
+    const pc = phaseColors[m.phaseColor];
+    const div = document.createElement('div');
+    div.className = 'mod';
+    div.innerHTML = `
+      <div class="mod-head" onclick="this.parentNode.classList.toggle('open')">
+        <div class="mod-num" style="background:${pc.bg};color:${pc.fg}">${m.num}</div>
+        <div class="mod-info">
+          <div class="mod-title">${m.title}${m.isNew ? ' <span class="new-badge">NEW</span>' : ''}</div>
+          <div class="mod-meta">Phase ${m.phase}</div>
+        </div>
+        <div class="mod-right">
+          <div class="mod-hrs">${m.hrs}</div>
+          <div class="mod-chevron">⌄</div>
+        </div>
+      </div>
+      <div class="mod-body">
+        <div class="body-section">Competency checks — can you do these?</div>
+        <div class="checks">${m.checks.map(c => `<div class="check-item">${c}</div>`).join('')}</div>
+        <div class="body-section" style="margin-top:.875rem">Free resources — all links verified</div>
+        <div class="res-grid">${m.resources.map(r => `
+          <div class="res-card">
+            <div class="res-dot"></div>
+            <div class="res-info">
+              <div class="res-name">${r.n}</div>
+              <div class="res-src">${r.src}</div>
+            </div>
+            <div class="res-hrs">${r.hrs}</div>
+            <a class="res-link" href="${r.url}" target="_blank">Open ↗</a>
+          </div>`).join('')}
+        </div>
+        ${m.capstone ? `
+          <div class="body-section" style="margin-top:.875rem">Capstone project</div>
+          <div class="capstone">
+            <div class="capstone-label">Build this</div>
+            <div class="capstone-title">${m.capstone.t}</div>
+            <div class="capstone-desc">${m.capstone.d}</div>
+          </div>` : ''}
+      </div>`;
+    g.appendChild(div);
+  });
+}
+
+const SKILLS = [
+  {id:"sql",l:"SQL / Data Modeling",mod:"1"},
+  {id:"python",l:"Python for Data Engineering",mod:"2"},
+  {id:"spark",l:"Apache Spark",mod:"5"},
+  {id:"kafka",l:"Kafka / Streaming",mod:"6"},
+  {id:"aws",l:"AWS Data Services",mod:"7"},
+  {id:"gcp",l:"GCP BigQuery / Dataflow",mod:"8"},
+  {id:"airflow",l:"Airflow / Orchestration",mod:"9"},
+  {id:"dbt",l:"dbt / Transformation",mod:"10"},
+  {id:"terraform",l:"Terraform for Data",mod:"11"},
+  {id:"cicd",l:"CI/CD / Data Quality",mod:"12"}
+];
+
+const sv = {};
+function barColor(v) {
+  if (v >= 70) return "#34D399";
+  if (v >= 40) return "#3B9BFF";
+  return "#FB7185";
+}
+
+function buildSkills() {
+  const g = document.getElementById('skillGrid');
+  SKILLS.forEach(s => {
+    sv[s.id] = 50;
+    const d = document.createElement('div');
+    d.className = 'skill-item';
+    d.innerHTML = `
+      <label>${s.l} <span class="sk-pct" id="pct-${s.id}">50%</span></label>
+      <input type="range" min="0" max="100" value="50" step="10" oninput="upSk('${s.id}',this.value)">
+      <div class="sk-bar-wrap"><div class="sk-bar" id="bar-${s.id}" style="width:50%;background:#3B9BFF"></div></div>`;
+    g.appendChild(d);
+  });
+  renderRec();
+}
+
+function upSk(id, v) {
+  sv[id] = parseInt(v);
+  const bar = document.getElementById('bar-'+id);
+  bar.style.width = v + '%';
+  bar.style.background = barColor(parseInt(v));
+  document.getElementById('pct-'+id).textContent = v + '%';
+  renderRec();
+}
+
+function renderRec() {
+  const skip = [], focus = [];
+  SKILLS.forEach(s => {
+    if (sv[s.id] >= 70) skip.push(s.l + ' (Module ' + s.mod + ')');
+    else if (sv[s.id] < 40) focus.push(s.l + ' → start with Module ' + s.mod);
+  });
+  const out = document.getElementById('recOut');
+  out.innerHTML = `
+    <div class="rec-box rec-focus">
+      <div class="rec-title">Focus on these first</div>
+      ${focus.length ? focus.map(f => `<div class="rec-item">→ ${f}</div>`).join('') : '<div class="rec-item" style="color:#9BA9C4">Your baseline looks solid — proceed sequentially through the modules.</div>'}
+    </div>
+    ${skip.length ? `
+    <div class="rec-box rec-skip">
+      <div class="rec-title">Skip or skim</div>
+      ${skip.map(s => `<div class="skip-item">${s}</div>`).join('')}
+    </div>` : ''}`;
+}
+
+const navTabs = document.querySelectorAll('.tab');
+const sections = document.querySelectorAll('.section-block');
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navTabs.forEach(t => t.classList.toggle('active', t.dataset.target === entry.target.id));
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => spy.observe(s));
+
+buildMods();
+buildSkills();
+</script>
+</body>
+</html>

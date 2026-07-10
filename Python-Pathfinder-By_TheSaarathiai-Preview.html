@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Stack Python Curriculum — TheSaarathiAI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #06070A;
+  --bg-elevated: #101319;
+  --bg-elevated-2: #161A22;
+  --border: rgba(255,255,255,0.09);
+  --border-strong: rgba(255,255,255,0.16);
+  --text: #F3F5F8;
+  --text-secondary: #9BA9C4;
+  --text-tertiary: #6C7791;
+  --blue: #3B9BFF;
+  --blue-light: rgba(59,155,255,0.14);
+  --green: #34D399;
+  --green-light: rgba(52,211,153,0.14);
+  --amber: #FFAC0A;
+  --amber-light: rgba(255,172,10,0.16);
+  --purple: #A78BFA;
+  --purple-light: rgba(167,139,250,0.16);
+  --teal: #22D3EE;
+  --teal-light: rgba(34,211,238,0.14);
+  --red: #FB7185;
+  --red-light: rgba(251,113,133,0.14);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+/* HEADER */
+.header { position: relative; overflow: hidden; background:
+    radial-gradient(900px 420px at 12% -10%, rgba(255,172,10,0.16), transparent 60%),
+    radial-gradient(900px 460px at 88% 0%, rgba(59,155,255,0.20), transparent 60%),
+    var(--bg);
+  color: var(--text); padding: 3rem 2rem 2.5rem; border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 1000px; margin: 0 auto; position: relative; }
+.header-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(59,155,255,0.12); border: 1px solid rgba(59,155,255,0.3); color: #BFDBFF; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: var(--radius-pill); margin-bottom: 1.25rem; letter-spacing: .04em; text-transform: uppercase; }
+.header h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.15; margin-bottom: .5rem; color: var(--text); }
+.header-sub { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 500px; }
+.stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem 1rem; }
+.stat-n { font-size: 1.75rem; font-weight: 700; color: #6CB4FF; }
+.stat-l { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+/* ROADMAP */
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); margin-bottom: .75rem; margin-top: 2rem; }
+.section-label:first-child { margin-top: 0; }
+.roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; background: var(--bg-elevated); }
+.rp { padding: 1rem .875rem; border-right: 1px solid var(--border); }
+.rp:last-child { border-right: none; }
+.rp-phase { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .35rem; }
+.rp-title { font-size: 13px; font-weight: 600; margin-bottom: .25rem; color: var(--text); }
+.rp-skills { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+.rp-1 { background: linear-gradient(180deg, rgba(59,155,255,0.12), transparent); } .rp-1 .rp-phase { color: var(--blue); }
+.rp-2 { background: linear-gradient(180deg, rgba(52,211,153,0.12), transparent); } .rp-2 .rp-phase { color: var(--green); }
+.rp-3 { background: linear-gradient(180deg, rgba(34,211,238,0.12), transparent); } .rp-3 .rp-phase { color: var(--teal); }
+.rp-4 { background: linear-gradient(180deg, rgba(255,172,10,0.14), transparent); } .rp-4 .rp-phase { color: var(--amber); }
+.rp-5 { background: linear-gradient(180deg, rgba(167,139,250,0.14), transparent); } .rp-5 .rp-phase { color: var(--purple); }
+
+/* TABS */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; position: sticky; top: 12px; z-index: 5; }
+.tab { padding: .65rem 1.25rem; font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); border-radius: var(--radius-pill); transition: all .15s; }
+.tab:hover { color: var(--text); border-color: var(--border-strong); box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+.tab.active { color: #fff; font-weight: 600; background: linear-gradient(135deg, rgba(59,155,255,0.22), rgba(255,172,10,0.14)); border-color: rgba(59,155,255,0.55); box-shadow: 0 0 0 1px rgba(59,155,255,0.3), 0 6px 20px rgba(59,155,255,0.18); }
+.section-block { scroll-margin-top: 16px; margin-bottom: 2.5rem; }
+
+/* GAP BANNER */
+.gap-banner { background: var(--amber-light); border: 1px solid rgba(255,172,10,0.3); border-left: 4px solid var(--amber); border-radius: var(--radius-sm); padding: .875rem 1rem; margin-bottom: 1.25rem; font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+.gap-banner strong { color: var(--amber); }
+
+/* MODULE CARDS */
+.mod { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; background: var(--bg-elevated); transition: box-shadow .15s, border-color .15s; }
+.mod:hover { border-color: rgba(59,155,255,0.4); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.mod-head { display: flex; align-items: center; gap: 12px; padding: .875rem 1.125rem; cursor: pointer; background: transparent; user-select: none; transition: background .15s; }
+.mod-head:hover { background: rgba(59,155,255,0.05); }
+.mod-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.mod-info { flex: 1; min-width: 0; }
+.mod-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.mod-meta { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+.mod-meta::after { content: " · Click to expand"; color: var(--blue); opacity: .75; }
+.mod.open .mod-meta::after { content: " · Click to collapse"; }
+.mod-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.mod-hrs { font-size: 12px; font-weight: 600; color: var(--green); }
+.new-badge { background: var(--amber-light); color: var(--amber); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid rgba(255,172,10,0.35); }
+.mod-chevron { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--blue); background: var(--blue-light); border: 1px solid rgba(59,155,255,0.35); border-radius: 50%; transition: transform .2s; }
+.mod.open .mod-chevron { transform: rotate(180deg); }
+.mod-body { display: none; padding: 1.125rem 1.25rem; border-top: 1px solid var(--border); background: rgba(255,255,255,0.015); }
+.mod.open .mod-body { display: block; }
+
+/* MODULE BODY */
+.body-section { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); margin-bottom: .5rem; margin-top: 1rem; }
+.body-section:first-child { margin-top: 0; }
+.checks { display: grid; gap: 4px; }
+.check-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--text-secondary); padding: .3rem 0; }
+.check-item::before { content: "☐"; color: var(--blue); font-size: 14px; flex-shrink: 0; margin-top: -1px; }
+.res-grid { display: grid; gap: 6px; }
+.res-card { display: flex; align-items: center; gap: 10px; padding: .6rem .875rem; background: var(--bg-elevated-2); border: 1px solid var(--border); border-radius: var(--radius-sm); transition: border-color .15s; }
+.res-card:hover { border-color: var(--blue); }
+.res-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-light); border: 2px solid var(--blue); flex-shrink: 0; }
+.res-info { flex: 1; min-width: 0; }
+.res-name { font-size: 12.5px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.res-src { font-size: 11px; color: #8FA6D9; font-weight: 500; }
+.res-hrs { font-size: 11px; font-weight: 600; color: var(--green); white-space: nowrap; flex-shrink: 0; }
+.res-link { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--blue); text-decoration: none; font-weight: 500; white-space: nowrap; flex-shrink: 0; padding: 3px 10px; background: var(--blue-light); border: 1px solid rgba(59,155,255,0.3); border-radius: var(--radius-pill); transition: background .15s; }
+.res-link:hover { background: rgba(59,155,255,0.26); }
+.capstone { background: linear-gradient(135deg, rgba(167,139,250,0.16), rgba(59,155,255,0.08)); border: 1px solid rgba(167,139,250,0.35); border-radius: var(--radius-sm); padding: .875rem 1rem; margin-top: .5rem; }
+.capstone-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--purple); margin-bottom: .35rem; }
+.capstone-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: .25rem; }
+.capstone-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+/* SKILL CHECK */
+.skill-intro { font-size: 13px; color: var(--text-secondary); margin-bottom: 1.25rem; }
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.25rem; }
+.skill-item label { font-size: 12.5px; font-weight: 500; display: flex; justify-content: space-between; margin-bottom: .4rem; color: var(--text); }
+.skill-item .sk-pct { font-size: 12px; font-weight: 600; color: var(--blue); }
+.skill-item input[type=range] { width: 100%; accent-color: var(--blue); margin-bottom: .3rem; }
+.sk-bar-wrap { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.sk-bar { height: 100%; border-radius: 3px; transition: width .3s, background .3s; }
+.rec-box { border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.rec-focus { background: var(--blue-light); border: 1px solid rgba(59,155,255,0.3); }
+.rec-skip { background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+.rec-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem; }
+.rec-focus .rec-title { color: var(--blue); }
+.rec-skip .rec-title { color: var(--text-tertiary); }
+.rec-item { font-size: 13px; padding: .3rem 0; border-bottom: 1px solid rgba(255,255,255,.06); color: var(--text); }
+.rec-item:last-child { border-bottom: none; }
+.skip-item { font-size: 13px; padding: .3rem 0; border-bottom: 1px solid var(--border); color: var(--text-tertiary); text-decoration: line-through; }
+.skip-item:last-child { border-bottom: none; }
+
+/* T-SHAPED SKILLS */
+.tshape-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+.tshape-col { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.tshape-header { padding: .75rem 1rem; font-size: 13px; font-weight: 600; }
+.th-tech { background: var(--blue-light); color: var(--blue); }
+.th-human { background: var(--green-light); color: var(--green); }
+.tshape-list { padding: .5rem 0; }
+.tshape-item { display: flex; align-items: center; gap: 8px; padding: .4rem 1rem; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 12.5px; color: var(--text-secondary); }
+.tshape-item:last-child { border-bottom: none; }
+.ttag { font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: var(--radius-pill); margin-left: auto; white-space: nowrap; }
+.ttag-code { background: var(--blue-light); color: var(--blue); }
+.ttag-infra { background: var(--teal-light); color: var(--teal); }
+.ttag-ai { background: var(--purple-light); color: var(--purple); }
+.ttag-data { background: var(--amber-light); color: var(--amber); }
+.ttag-people { background: var(--green-light); color: var(--green); }
+.ttag-mindset { background: var(--red-light); color: var(--red); }
+.ttag-career { background: var(--green-light); color: var(--green); }
+.interview-box { background: var(--amber-light); border: 1px solid rgba(255,172,10,0.3); border-left: 4px solid var(--amber); border-radius: var(--radius-sm); padding: 1rem 1.125rem; }
+.interview-box h4 { font-size: 12.5px; font-weight: 700; color: var(--amber); margin-bottom: .4rem; }
+.interview-box p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+
+/* PORTFOLIO */
+.port-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+.port-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.port-card-header { padding: .75rem 1rem; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.pc-1 { background: var(--blue-light); color: var(--blue); }
+.pc-2 { background: var(--green-light); color: var(--green); }
+.pc-3 { background: var(--amber-light); color: var(--amber); }
+.pc-4 { background: var(--purple-light); color: var(--purple); }
+.port-card-body { padding: .75rem 1rem; }
+.port-card-body li { font-size: 12px; color: var(--text-secondary); line-height: 1.7; margin-left: 1rem; }
+
+/* FOOTER */
+.footer { background: var(--bg); color: var(--text-tertiary); text-align: center; padding: 2rem; font-size: 12px; margin-top: 3rem; border-top: 1px solid var(--border); }
+.footer a { color: var(--text-secondary); text-decoration: none; }
+
+/* TRACK SELECTOR */
+.track-selector-wrap { margin-bottom: 2rem; }
+.track-selector-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: .75rem; }
+.track-selector-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.track-card { display: block; text-decoration: none; border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; transition: border-color .15s, background .15s; background: var(--bg-elevated); }
+.track-card:hover { border-color: var(--blue); background: rgba(59,155,255,0.06); }
+.track-card.active { border-color: var(--blue); background: rgba(59,155,255,0.14); box-shadow: 0 0 0 1px rgba(59,155,255,0.25); }
+.track-icon { font-size: 22px; margin-bottom: 6px; display: block; }
+.track-name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.track-meta { font-size: 10px; color: var(--text-tertiary); line-height: 1.4; }
+
+@media (max-width: 700px) {
+  .roadmap { grid-template-columns: 1fr 1fr; }
+  .stat-row { grid-template-columns: repeat(2,1fr); }
+  .skill-grid { grid-template-columns: 1fr; }
+  .tshape-grid { grid-template-columns: 1fr; }
+  .port-grid { grid-template-columns: 1fr; }
+  .track-selector-grid { grid-template-columns: repeat(2,1fr); }
+  .header h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">✓ 100% Free · No Paywalls · TheSaarathiAI Career Track</div>
+    <h1>Full Stack Python<br>Curriculum</h1>
+    <p class="header-sub">From Python fundamentals to advanced concepts. Data types · Functions · OOP · Exception Handling · Decorators · Generators. Plus real-world AI and networking applications.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-n">8</div><div class="stat-l">Modules</div></div>
+      <div class="stat"><div class="stat-n">~20</div><div class="stat-l">Free hours</div></div>
+      <div class="stat"><div class="stat-n">Scenario</div><div class="stat-l">Projects</div></div>
+      <div class="stat"><div class="stat-n">$0</div><div class="stat-l">Cost</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="track-selector-wrap">
+    <div class="track-selector-label">Choose your career track</div>
+    <div class="track-selector-grid">
+      <a class="track-card" href="FDE-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🚀</span><div class="track-name">Forward Deployed Engineer</div><div class="track-meta">15 modules · ~168 hrs · AI + Cloud</div></a>
+      <a class="track-card" href="Network-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🌐</span><div class="track-name">Network Engineer</div><div class="track-meta">14 modules · ~120 hrs · Cisco · Palo Alto · F5</div></a>
+      <a class="track-card" href="DevOps-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">⚙️</span><div class="track-name">DevOps Engineer</div><div class="track-meta">10 modules · Jenkins · Docker · K8s · Terraform</div></a>
+      <a class="track-card active" href="Python-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🐍</span><div class="track-name">Full Stack Python</div><div class="track-meta">8 modules · ~20 hrs · Python + AI/Networking</div></a>
+      <a class="track-card" href="DataEngineer-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">📊</span><div class="track-name">Data Engineer</div><div class="track-meta">Spark · Kafka · Airflow · AWS · GCP</div></a>
+    </div>
+  </div>
+
+  <div class="gap-banner">Python is the most in-demand language in 2026 — for AI, data engineering, web development, and automation. This curriculum goes from zero to full stack Python with real coding tasks and interview questions built into every session.</div>
+
+  <div class="section-label">Full stack Python roadmap — 4 phases</div>
+  <div class="roadmap" style="grid-template-columns:repeat(4,1fr)">
+    <div class="rp rp-1"><div class="rp-phase">Phase 1</div><div class="rp-title">Python Basics</div><div class="rp-skills">Setup · Syntax · Data Types · Control Flow</div></div>
+    <div class="rp rp-2"><div class="rp-phase">Phase 2</div><div class="rp-title">Functions & OOP</div><div class="rp-skills">Functions · args/kwargs · Classes · Inheritance</div></div>
+    <div class="rp rp-3"><div class="rp-phase">Phase 3</div><div class="rp-title">Modules & Errors</div><div class="rp-skills">File I/O · CSV · Exception Handling</div></div>
+    <div class="rp rp-4"><div class="rp-phase">Phase 4</div><div class="rp-title">Advanced & Applications</div><div class="rp-skills">Decorators · Generators · AI · Networking</div></div>
+  </div>
+
+  <div class="tabs">
+    <a class="tab" href="#sec-modules" data-target="sec-modules">All modules</a>
+    <a class="tab" href="#sec-assess" data-target="sec-assess">Skill check</a>
+    <a class="tab" href="#sec-tshape" data-target="sec-tshape">T-shaped skills</a>
+    <a class="tab" href="#sec-port" data-target="sec-port">Portfolio</a>
+  </div>
+
+  <div class="section-block" id="sec-modules">
+    <div class="section-label">All Modules</div>
+    <div id="modGrid"></div>
+  </div>
+
+  <div class="section-block" id="sec-assess">
+    <div class="section-label">Skill Check</div>
+    <p class="skill-intro">Rate your current level in each domain. The skill check shows what to skip and what to focus on first — so you spend time on gaps, not on things you already know.</p>
+    <div class="skill-grid" id="skillGrid"></div>
+    <div id="recOut"></div>
+  </div>
+
+  <div class="section-block" id="sec-tshape">
+    <div class="section-label">T-Shaped Skills</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:1.25rem">Python developers need deep language mastery AND broad execution skills to land and keep the role. Both are required.</p>
+    <div class="tshape-grid">
+      <div class="tshape-col">
+        <div class="tshape-header th-tech">Technical depth</div>
+        <div class="tshape-list">
+          <div class="tshape-item">Core syntax + data structures<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Functions, *args, **kwargs<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">OOP — classes, inheritance, magic methods<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Modules, file I/O, CSV, pickling<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Exception handling + custom exceptions<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Decorators, generators, lambda/map/filter<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Threading and multiprocessing basics<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">AI libraries — scikit-learn, pandas, NumPy<span class="ttag ttag-ai">AI</span></div>
+          <div class="tshape-item">Network scripting — Paramiko, Netmiko, sockets<span class="ttag ttag-infra">infra</span></div>
+        </div>
+      </div>
+      <div class="tshape-col">
+        <div class="tshape-header th-human">Execution breadth</div>
+        <div class="tshape-list">
+          <div class="tshape-item">Explaining code decisions to non-technical stakeholders<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Debugging methodically — read errors top to bottom<span class="ttag ttag-mindset">mindset</span></div>
+          <div class="tshape-item">Writing clean, readable code others can maintain<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Using docs and practice platforms effectively<span class="ttag ttag-mindset">mindset</span></div>
+          <div class="tshape-item">Building a portfolio on GitHub<span class="ttag ttag-career">career</span></div>
+          <div class="tshape-item">Preparing for whiteboard coding questions<span class="ttag ttag-career">career</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="interview-box">
+      <h4>Python interview reality</h4>
+      <p>Python interviews in 2026 combine syntax questions, data structure problems, and OOP design. The most common gaps candidates have: not understanding mutability, confusing deep vs shallow copy, and not knowing when to use a generator vs a list. Practice the *args/**kwargs and OOP scenario problems in this curriculum until you can explain them out loud.</p>
+    </div>
+  </div>
+
+  <div class="section-block" id="sec-port">
+    <div class="section-label">Portfolio</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:1.25rem">Turn the scenario problems from this course into portfolio pieces — recruiters want to see working code, not just completed exercises.</p>
+    <div class="port-grid">
+      <div class="port-card">
+        <div class="port-card-header pc-1">Project 1 — Billing System</div>
+        <div class="port-card-body"><ul>
+          <li>Function-based invoice generator</li>
+          <li>*args for flexible item/course prices</li>
+          <li>**kwargs for optional customer details</li>
+          <li>Discount and tax logic with clean output</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-2">Project 2 — Banking System (OOP)</div>
+        <div class="port-card-body"><ul>
+          <li>Account class with balance, deposit, withdraw</li>
+          <li>Encapsulated private balance attribute</li>
+          <li>Custom exception for insufficient funds</li>
+          <li>__str__ method for readable account details</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-3">Project 3 — File-Based Data Tool</div>
+        <div class="port-card-body"><ul>
+          <li>Reads and writes CSV data</li>
+          <li>Uses context managers for safe file handling</li>
+          <li>Custom exception classes for bad input</li>
+          <li>Packaged as an importable module</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-4">Project 4 — AI or Networking Mini-Tool</div>
+        <div class="port-card-body"><ul>
+          <li>A small scikit-learn model OR</li>
+          <li>A Netmiko/socket-based network script</li>
+          <li>Decorators for logging/timing</li>
+          <li>README explaining the problem and approach</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+<div class="footer">
+  Built by TheSaarathiAI · 100% free · No paywalls · <a href="#">thesaarathiai.com</a>
+</div>
+
+<script>
+const MODS = [
+{num:"1",title:"Introduction to Python",phase:1,hrs:"~1 hr",phaseColor:"blue",
+ checks:["Can you explain what Python is and its key features?","Can you install Python on Windows, macOS, or Linux?","Can you set up a development environment with VS Code, PyCharm, or Jupyter?"],
+ resources:[
+   {n:"Installing Python — Windows (YouTube)",src:"youtube.com",url:"https://www.youtube.com/watch?v=C3bOxcILGu4",hrs:"free"},
+   {n:"Installing Python — Linux (YouTube)",src:"youtube.com",url:"https://www.youtube.com/watch?v=IAco2SSuGms",hrs:"free"},
+   {n:"Installing Python — Mac (YouTube)",src:"youtube.com",url:"https://www.youtube.com/watch?v=jmK0qwXBTcE",hrs:"free"},
+   {n:"Setting up your environment — VS Code, PyCharm, Jupyter (YouTube)",src:"youtube.com",url:"https://www.youtube.com/watch?v=DoLYVXR9SSc",hrs:"free"}
+ ]},
+{num:"2",title:"Core Python Programming",phase:1,hrs:"~5 hrs",phaseColor:"blue",
+ checks:["Can you use input, output, and comments correctly?","Can you work with variables and single-value data types?","Can you slice and index lists, tuples, sets, and dictionaries?","Can you write list and dict comprehensions?","Can you use type casting between data types?","Can you write arithmetic, logical, and comparison operators?","Can you write if/elif/else and for/while loops?","Can you iterate with range(), enumerate(), and zip()?","Can you manipulate strings — split, join, case conversion?"],
+ resources:[
+   {n:"HackerRank — Python arithmetic operators",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/python-arithmetic-operators/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — Python division",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/python-division/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — Python lists",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/python-lists/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — Capitalize",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/capitalize/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — Python string split and join",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/python-string-split-and-join/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — Set union",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/py-set-union/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — List comprehensions",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/list-comprehensions/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — If-else",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/py-if-else/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — Python loops",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/python-loops/problem?isFullScreen=true",hrs:"free"},
+   {n:"HackerRank — What's your name?",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/whats-your-name/problem?isFullScreen=true",hrs:"free"}
+ ]},
+{num:"3",title:"Functions",phase:2,hrs:"~2 hrs",phaseColor:"green",
+ checks:["Can you define and call functions with parameters and return values?","Can you use *args and **kwargs for flexible function signatures?","Can you combine positional args, default args, *args, and **kwargs in one function?"],
+ resources:[
+   {n:"HackerRank — Solve me first",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/solve-me-first/problem",hrs:"free"},
+   {n:"HackerRank — Write a function",src:"hackerrank.com",url:"https://www.hackerrank.com/challenges/write-a-function/problem",hrs:"free"}
+ ],
+ capstone:{t:"ATM balance and invoice generator functions",d:"Write a function that calculates new balance after a withdrawal, returning 'Transaction failed: Insufficient funds.' when appropriate. Then write generate_invoice() using positional args for customer name, a default payment_mode, *args for flexible item prices, and **kwargs for optional details like city or invoice_id. Extend it into a course-billing system that applies a 10% discount with a referral code and 18% tax."}},
+{num:"4",title:"Object-Oriented Programming",phase:2,hrs:"~5 hrs",phaseColor:"green",
+ checks:["Can you define classes and objects with __init__() and instance variables?","Do you understand object attributes, methods, and self?","Can you use class methods and static methods?","Can you implement inheritance and method overriding?","Can you apply encapsulation with protected (_) and private (__) attributes?","Do you understand polymorphism across derived classes?","Can you implement magic methods like __str__() and __repr__()?"],
+ resources:[
+   {n:"Programiz — Python OOP exercises",src:"programiz.com",url:"https://www.programiz.com/python-programming/examples",hrs:"free"},
+   {n:"Exercism — Python Track (mentored, free)",src:"exercism.org",url:"https://exercism.org/tracks/python",hrs:"free"}
+ ],
+ capstone:{t:"Banking system and Student class",d:"Build a bank account class supporting balance check, deposit, withdraw, and viewing account details. Then build a Student class storing name, age, and grade with a constructor and a display_info() method, and create two Student objects to demonstrate it."}},
+{num:"5",title:"Modules and File Handling",phase:3,hrs:"~2 hrs",phaseColor:"amber",
+ checks:["Can you import built-in and custom modules?","Have you used os, sys, math, and random?","Can you read and write text files?","Can you use a context manager with 'with open()'?","Do you understand pickling and unpickling?","Can you read and write CSV files?"],
+ resources:[
+   {n:"GeeksforGeeks — Python Programming Language Tutorial (free)",src:"geeksforgeeks.org",url:"https://www.geeksforgeeks.org/python-programming-language-tutorial/",hrs:"free"},
+   {n:"W3Schools — Learn Python (free)",src:"w3schools.com",url:"https://www.w3schools.com/python/",hrs:"free"}
+ ]},
+{num:"6",title:"Exception Handling",phase:3,hrs:"~0.5 hr",phaseColor:"amber",
+ checks:["Can you use try, except, else, and finally blocks?","Can you raise exceptions deliberately?","Can you create custom exception classes?","Can you write meaningful, actionable error messages?"],
+ resources:[
+   {n:"TpointTech (JavaTpoint) — Python Tutorial (free)",src:"tpointtech.com",url:"https://www.tpointtech.com/python-tutorial",hrs:"free"},
+   {n:"W3Schools — Python Exercises (free)",src:"w3schools.com",url:"https://www.w3schools.com/python/python_exercises.asp",hrs:"free"}
+ ]},
+{num:"7",title:"Advanced Python Concepts",phase:4,hrs:"~3 hrs",phaseColor:"purple",
+ checks:["Can you write lambda functions for small operations?","Can you use map, filter, and reduce?","Can you write and apply decorators?","Do you understand generators and lazy evaluation?","Can you write custom context managers with 'with'?","Do you understand the basics of threading and multiprocessing?"],
+ resources:[
+   {n:"Exercism — Python Track (free)",src:"exercism.org",url:"https://exercism.org/tracks/python",hrs:"free"},
+   {n:"LeetCode — Python problems (free)",src:"leetcode.com",url:"https://leetcode.com/problemset/?search=python",hrs:"free"},
+   {n:"Edabit — Python practice (free)",src:"edabit.com",url:"https://edabit.com/tutorial/python",hrs:"free"},
+   {n:"CodeWars — Python katas (free)",src:"codewars.com",url:"https://www.codewars.com/collections/easy-python-katas",hrs:"free"},
+   {n:"Replit — Python sandbox (free)",src:"replit.com",url:"https://replit.com/",hrs:"free"},
+   {n:"JetBrains Academy — Python Track (free)",src:"jetbrains.com",url:"https://www.jetbrains.com/academy/",hrs:"free"},
+   {n:"LearnPython.org — interactive Python (free)",src:"learnpython.org",url:"https://www.learnpython.org/",hrs:"free"}
+ ]},
+{num:"8",title:"Exploring AI and Networking with Python",phase:4,hrs:"~2 hrs",phaseColor:"purple",isNew:true,
+ checks:["Can you explain why Python is the go-to language for AI — scikit-learn, TensorFlow, PyTorch?","Do you know Python's role in network automation — Paramiko, Netmiko, NAPALM, Ansible?","Can you build a basic socket-based server?","Do you understand SNMP monitoring and packet analysis with PySNMP, psutil, and scapy?"],
+ resources:[
+   {n:"AI Python for Beginners (DeepLearning.AI, official, free)",src:"deeplearning.ai",url:"https://www.deeplearning.ai/short-courses/ai-python-for-beginners/",hrs:"free"},
+   {n:"Official scikit-learn Tutorials (free)",src:"scikit-learn.org",url:"https://scikit-learn.org/stable/",hrs:"free"},
+   {n:"Kaggle — Intro to Machine Learning (free)",src:"kaggle.com",url:"https://www.kaggle.com/learn/intro-to-machine-learning",hrs:"free"}
+ ]}
+];
+
+const phaseColors = {
+  blue: {bg:"rgba(59,155,255,0.16)",fg:"#6CB4FF"},
+  green: {bg:"rgba(52,211,153,0.16)",fg:"#34D399"},
+  teal: {bg:"rgba(34,211,238,0.16)",fg:"#22D3EE"},
+  amber: {bg:"rgba(255,172,10,0.18)",fg:"#FFAC0A"},
+  purple: {bg:"rgba(167,139,250,0.18)",fg:"#A78BFA"}
+};
+
+function buildMods() {
+  const g = document.getElementById('modGrid');
+  MODS.forEach(m => {
+    const pc = phaseColors[m.phaseColor];
+    const div = document.createElement('div');
+    div.className = 'mod';
+    div.innerHTML = `
+      <div class="mod-head" onclick="this.parentNode.classList.toggle('open')">
+        <div class="mod-num" style="background:${pc.bg};color:${pc.fg}">${m.num}</div>
+        <div class="mod-info">
+          <div class="mod-title">${m.title}${m.isNew ? ' <span class="new-badge">NEW</span>' : ''}</div>
+          <div class="mod-meta">Phase ${m.phase}</div>
+        </div>
+        <div class="mod-right">
+          <div class="mod-hrs">${m.hrs}</div>
+          <div class="mod-chevron">⌄</div>
+        </div>
+      </div>
+      <div class="mod-body">
+        <div class="body-section">Competency checks — can you do these?</div>
+        <div class="checks">${m.checks.map(c => `<div class="check-item">${c}</div>`).join('')}</div>
+        <div class="body-section" style="margin-top:.875rem">Free resources — all links verified</div>
+        <div class="res-grid">${m.resources.map(r => `
+          <div class="res-card">
+            <div class="res-dot"></div>
+            <div class="res-info">
+              <div class="res-name">${r.n}</div>
+              <div class="res-src">${r.src}</div>
+            </div>
+            <div class="res-hrs">${r.hrs}</div>
+            <a class="res-link" href="${r.url}" target="_blank">Open ↗</a>
+          </div>`).join('')}
+        </div>
+        ${m.capstone ? `
+          <div class="body-section" style="margin-top:.875rem">Capstone project</div>
+          <div class="capstone">
+            <div class="capstone-label">Build this</div>
+            <div class="capstone-title">${m.capstone.t}</div>
+            <div class="capstone-desc">${m.capstone.d}</div>
+          </div>` : ''}
+      </div>`;
+    g.appendChild(div);
+  });
+}
+
+const SKILLS = [
+  {id:"setup",l:"Python Setup / Environment",mod:"1"},
+  {id:"syntax",l:"Core Syntax / Data Structures",mod:"2"},
+  {id:"functions",l:"Functions / args & kwargs",mod:"3"},
+  {id:"oop",l:"OOP / Classes / Inheritance",mod:"4"},
+  {id:"fileio",l:"Modules / File Handling",mod:"5"},
+  {id:"exceptions",l:"Exception Handling",mod:"6"},
+  {id:"advanced",l:"Decorators / Generators",mod:"7"},
+  {id:"ai",l:"AI / Networking with Python",mod:"8"}
+];
+
+const sv = {};
+function barColor(v) {
+  if (v >= 70) return "#34D399";
+  if (v >= 40) return "#3B9BFF";
+  return "#FB7185";
+}
+
+function buildSkills() {
+  const g = document.getElementById('skillGrid');
+  SKILLS.forEach(s => {
+    sv[s.id] = 50;
+    const d = document.createElement('div');
+    d.className = 'skill-item';
+    d.innerHTML = `
+      <label>${s.l} <span class="sk-pct" id="pct-${s.id}">50%</span></label>
+      <input type="range" min="0" max="100" value="50" step="10" oninput="upSk('${s.id}',this.value)">
+      <div class="sk-bar-wrap"><div class="sk-bar" id="bar-${s.id}" style="width:50%;background:#3B9BFF"></div></div>`;
+    g.appendChild(d);
+  });
+  renderRec();
+}
+
+function upSk(id, v) {
+  sv[id] = parseInt(v);
+  const bar = document.getElementById('bar-'+id);
+  bar.style.width = v + '%';
+  bar.style.background = barColor(parseInt(v));
+  document.getElementById('pct-'+id).textContent = v + '%';
+  renderRec();
+}
+
+function renderRec() {
+  const skip = [], focus = [];
+  SKILLS.forEach(s => {
+    if (sv[s.id] >= 70) skip.push(s.l + ' (Module ' + s.mod + ')');
+    else if (sv[s.id] < 40) focus.push(s.l + ' → start with Module ' + s.mod);
+  });
+  const out = document.getElementById('recOut');
+  out.innerHTML = `
+    <div class="rec-box rec-focus">
+      <div class="rec-title">Focus on these first</div>
+      ${focus.length ? focus.map(f => `<div class="rec-item">→ ${f}</div>`).join('') : '<div class="rec-item" style="color:#9BA9C4">Your baseline looks solid — proceed sequentially through the modules.</div>'}
+    </div>
+    ${skip.length ? `
+    <div class="rec-box rec-skip">
+      <div class="rec-title">Skip or skim</div>
+      ${skip.map(s => `<div class="skip-item">${s}</div>`).join('')}
+    </div>` : ''}`;
+}
+
+const navTabs = document.querySelectorAll('.tab');
+const sections = document.querySelectorAll('.section-block');
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navTabs.forEach(t => t.classList.toggle('active', t.dataset.target === entry.target.id));
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => spy.observe(s));
+
+buildMods();
+buildSkills();
+</script>
+</body>
+</html>

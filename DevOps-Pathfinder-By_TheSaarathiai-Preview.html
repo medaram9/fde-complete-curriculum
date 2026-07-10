@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps Engineer Curriculum — TheSaarathiAI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #06070A;
+  --bg-elevated: #101319;
+  --bg-elevated-2: #161A22;
+  --border: rgba(255,255,255,0.09);
+  --border-strong: rgba(255,255,255,0.16);
+  --text: #F3F5F8;
+  --text-secondary: #9BA9C4;
+  --text-tertiary: #6C7791;
+  --blue: #3B9BFF;
+  --blue-light: rgba(59,155,255,0.14);
+  --green: #34D399;
+  --green-light: rgba(52,211,153,0.14);
+  --amber: #FFAC0A;
+  --amber-light: rgba(255,172,10,0.16);
+  --purple: #A78BFA;
+  --purple-light: rgba(167,139,250,0.16);
+  --teal: #22D3EE;
+  --teal-light: rgba(34,211,238,0.14);
+  --red: #FB7185;
+  --red-light: rgba(251,113,133,0.14);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+/* HEADER */
+.header { position: relative; overflow: hidden; background:
+    radial-gradient(900px 420px at 12% -10%, rgba(255,172,10,0.16), transparent 60%),
+    radial-gradient(900px 460px at 88% 0%, rgba(59,155,255,0.20), transparent 60%),
+    var(--bg);
+  color: var(--text); padding: 3rem 2rem 2.5rem; border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 1000px; margin: 0 auto; position: relative; }
+.header-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(59,155,255,0.12); border: 1px solid rgba(59,155,255,0.3); color: #BFDBFF; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: var(--radius-pill); margin-bottom: 1.25rem; letter-spacing: .04em; text-transform: uppercase; }
+.header h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.15; margin-bottom: .5rem; color: var(--text); }
+.header-sub { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 500px; }
+.stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem 1rem; }
+.stat-n { font-size: 1.75rem; font-weight: 700; color: #6CB4FF; }
+.stat-l { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* MAIN */
+.main { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+/* ROADMAP */
+.section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); margin-bottom: .75rem; margin-top: 2rem; }
+.section-label:first-child { margin-top: 0; }
+.roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; background: var(--bg-elevated); }
+.rp { padding: 1rem .875rem; border-right: 1px solid var(--border); }
+.rp:last-child { border-right: none; }
+.rp-phase { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .35rem; }
+.rp-title { font-size: 13px; font-weight: 600; margin-bottom: .25rem; color: var(--text); }
+.rp-skills { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+.rp-1 { background: linear-gradient(180deg, rgba(59,155,255,0.12), transparent); } .rp-1 .rp-phase { color: var(--blue); }
+.rp-2 { background: linear-gradient(180deg, rgba(52,211,153,0.12), transparent); } .rp-2 .rp-phase { color: var(--green); }
+.rp-3 { background: linear-gradient(180deg, rgba(34,211,238,0.12), transparent); } .rp-3 .rp-phase { color: var(--teal); }
+.rp-4 { background: linear-gradient(180deg, rgba(255,172,10,0.14), transparent); } .rp-4 .rp-phase { color: var(--amber); }
+.rp-5 { background: linear-gradient(180deg, rgba(167,139,250,0.14), transparent); } .rp-5 .rp-phase { color: var(--purple); }
+
+/* TABS */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; position: sticky; top: 12px; z-index: 5; }
+.tab { padding: .65rem 1.25rem; font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); border-radius: var(--radius-pill); transition: all .15s; }
+.tab:hover { color: var(--text); border-color: var(--border-strong); box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+.tab.active { color: #fff; font-weight: 600; background: linear-gradient(135deg, rgba(59,155,255,0.22), rgba(255,172,10,0.14)); border-color: rgba(59,155,255,0.55); box-shadow: 0 0 0 1px rgba(59,155,255,0.3), 0 6px 20px rgba(59,155,255,0.18); }
+.section-block { scroll-margin-top: 16px; margin-bottom: 2.5rem; }
+
+/* GAP BANNER */
+.gap-banner { background: var(--amber-light); border: 1px solid rgba(255,172,10,0.3); border-left: 4px solid var(--amber); border-radius: var(--radius-sm); padding: .875rem 1rem; margin-bottom: 1.25rem; font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+.gap-banner strong { color: var(--amber); }
+
+/* MODULE CARDS */
+.mod { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 8px; background: var(--bg-elevated); transition: box-shadow .15s, border-color .15s; }
+.mod:hover { border-color: rgba(59,155,255,0.4); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.mod-head { display: flex; align-items: center; gap: 12px; padding: .875rem 1.125rem; cursor: pointer; background: transparent; user-select: none; transition: background .15s; }
+.mod-head:hover { background: rgba(59,155,255,0.05); }
+.mod-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.mod-info { flex: 1; min-width: 0; }
+.mod-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.mod-meta { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+.mod-meta::after { content: " · Click to expand"; color: var(--blue); opacity: .75; }
+.mod.open .mod-meta::after { content: " · Click to collapse"; }
+.mod-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.mod-hrs { font-size: 12px; font-weight: 600; color: var(--green); }
+.new-badge { background: var(--amber-light); color: var(--amber); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); border: 1px solid rgba(255,172,10,0.35); }
+.mod-chevron { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--blue); background: var(--blue-light); border: 1px solid rgba(59,155,255,0.35); border-radius: 50%; transition: transform .2s; }
+.mod.open .mod-chevron { transform: rotate(180deg); }
+.mod-body { display: none; padding: 1.125rem 1.25rem; border-top: 1px solid var(--border); background: rgba(255,255,255,0.015); }
+.mod.open .mod-body { display: block; }
+
+/* MODULE BODY */
+.body-section { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); margin-bottom: .5rem; margin-top: 1rem; }
+.body-section:first-child { margin-top: 0; }
+.checks { display: grid; gap: 4px; }
+.check-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--text-secondary); padding: .3rem 0; }
+.check-item::before { content: "☐"; color: var(--blue); font-size: 14px; flex-shrink: 0; margin-top: -1px; }
+.res-grid { display: grid; gap: 6px; }
+.res-card { display: flex; align-items: center; gap: 10px; padding: .6rem .875rem; background: var(--bg-elevated-2); border: 1px solid var(--border); border-radius: var(--radius-sm); transition: border-color .15s; }
+.res-card:hover { border-color: var(--blue); }
+.res-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-light); border: 2px solid var(--blue); flex-shrink: 0; }
+.res-info { flex: 1; min-width: 0; }
+.res-name { font-size: 12.5px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.res-src { font-size: 11px; color: #8FA6D9; font-weight: 500; }
+.res-hrs { font-size: 11px; font-weight: 600; color: var(--green); white-space: nowrap; flex-shrink: 0; }
+.res-link { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--blue); text-decoration: none; font-weight: 500; white-space: nowrap; flex-shrink: 0; padding: 3px 10px; background: var(--blue-light); border: 1px solid rgba(59,155,255,0.3); border-radius: var(--radius-pill); transition: background .15s; }
+.res-link:hover { background: rgba(59,155,255,0.26); }
+.capstone { background: linear-gradient(135deg, rgba(167,139,250,0.16), rgba(59,155,255,0.08)); border: 1px solid rgba(167,139,250,0.35); border-radius: var(--radius-sm); padding: .875rem 1rem; margin-top: .5rem; }
+.capstone-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--purple); margin-bottom: .35rem; }
+.capstone-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: .25rem; }
+.capstone-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+/* SKILL CHECK */
+.skill-intro { font-size: 13px; color: var(--text-secondary); margin-bottom: 1.25rem; }
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.25rem; }
+.skill-item label { font-size: 12.5px; font-weight: 500; display: flex; justify-content: space-between; margin-bottom: .4rem; color: var(--text); }
+.skill-item .sk-pct { font-size: 12px; font-weight: 600; color: var(--blue); }
+.skill-item input[type=range] { width: 100%; accent-color: var(--blue); margin-bottom: .3rem; }
+.sk-bar-wrap { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.sk-bar { height: 100%; border-radius: 3px; transition: width .3s, background .3s; }
+.rec-box { border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.rec-focus { background: var(--blue-light); border: 1px solid rgba(59,155,255,0.3); }
+.rec-skip { background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+.rec-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem; }
+.rec-focus .rec-title { color: var(--blue); }
+.rec-skip .rec-title { color: var(--text-tertiary); }
+.rec-item { font-size: 13px; padding: .3rem 0; border-bottom: 1px solid rgba(255,255,255,.06); color: var(--text); }
+.rec-item:last-child { border-bottom: none; }
+.skip-item { font-size: 13px; padding: .3rem 0; border-bottom: 1px solid var(--border); color: var(--text-tertiary); text-decoration: line-through; }
+.skip-item:last-child { border-bottom: none; }
+
+/* T-SHAPED SKILLS */
+.tshape-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+.tshape-col { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.tshape-header { padding: .75rem 1rem; font-size: 13px; font-weight: 600; }
+.th-tech { background: var(--blue-light); color: var(--blue); }
+.th-human { background: var(--green-light); color: var(--green); }
+.tshape-list { padding: .5rem 0; }
+.tshape-item { display: flex; align-items: center; gap: 8px; padding: .4rem 1rem; border-bottom: 1px solid rgba(255,255,255,.05); font-size: 12.5px; color: var(--text-secondary); }
+.tshape-item:last-child { border-bottom: none; }
+.ttag { font-size: 10px; font-weight: 600; padding: 1px 7px; border-radius: var(--radius-pill); margin-left: auto; white-space: nowrap; }
+.ttag-code { background: var(--blue-light); color: var(--blue); }
+.ttag-infra { background: var(--teal-light); color: var(--teal); }
+.ttag-ai { background: var(--purple-light); color: var(--purple); }
+.ttag-data { background: var(--amber-light); color: var(--amber); }
+.ttag-people { background: var(--green-light); color: var(--green); }
+.ttag-mindset { background: var(--red-light); color: var(--red); }
+.ttag-career { background: var(--green-light); color: var(--green); }
+.interview-box { background: var(--amber-light); border: 1px solid rgba(255,172,10,0.3); border-left: 4px solid var(--amber); border-radius: var(--radius-sm); padding: 1rem 1.125rem; }
+.interview-box h4 { font-size: 12.5px; font-weight: 700; color: var(--amber); margin-bottom: .4rem; }
+.interview-box p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+
+/* PORTFOLIO */
+.port-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+.port-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.port-card-header { padding: .75rem 1rem; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.pc-1 { background: var(--blue-light); color: var(--blue); }
+.pc-2 { background: var(--green-light); color: var(--green); }
+.pc-3 { background: var(--amber-light); color: var(--amber); }
+.pc-4 { background: var(--purple-light); color: var(--purple); }
+.port-card-body { padding: .75rem 1rem; }
+.port-card-body li { font-size: 12px; color: var(--text-secondary); line-height: 1.7; margin-left: 1rem; }
+
+/* FOOTER */
+.footer { background: var(--bg); color: var(--text-tertiary); text-align: center; padding: 2rem; font-size: 12px; margin-top: 3rem; border-top: 1px solid var(--border); }
+.footer a { color: var(--text-secondary); text-decoration: none; }
+
+/* TRACK SELECTOR */
+.track-selector-wrap { margin-bottom: 2rem; }
+.track-selector-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-tertiary); margin-bottom: .75rem; }
+.track-selector-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.track-card { display: block; text-decoration: none; border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 14px 12px; transition: border-color .15s, background .15s; background: var(--bg-elevated); }
+.track-card:hover { border-color: var(--blue); background: rgba(59,155,255,0.06); }
+.track-card.active { border-color: var(--blue); background: rgba(59,155,255,0.14); box-shadow: 0 0 0 1px rgba(59,155,255,0.25); }
+.track-icon { font-size: 22px; margin-bottom: 6px; display: block; }
+.track-name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.track-meta { font-size: 10px; color: var(--text-tertiary); line-height: 1.4; }
+
+@media (max-width: 700px) {
+  .roadmap { grid-template-columns: 1fr 1fr; }
+  .stat-row { grid-template-columns: repeat(2,1fr); }
+  .skill-grid { grid-template-columns: 1fr; }
+  .tshape-grid { grid-template-columns: 1fr; }
+  .port-grid { grid-template-columns: 1fr; }
+  .track-selector-grid { grid-template-columns: repeat(2,1fr); }
+  .header h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">✓ 100% Free · No Paywalls · TheSaarathiAI Career Track</div>
+    <h1>DevOps Engineer<br>Curriculum</h1>
+    <p class="header-sub">From Linux to Kubernetes. CI/CD to Infrastructure as Code. Jenkins · Docker · Kubernetes · Terraform · Ansible · AWS · GCP.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-n">10</div><div class="stat-l">Modules</div></div>
+      <div class="stat"><div class="stat-n">~35</div><div class="stat-l">Free hours</div></div>
+      <div class="stat"><div class="stat-n">Production</div><div class="stat-l">Experience</div></div>
+      <div class="stat"><div class="stat-n">$0</div><div class="stat-l">Cost</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="track-selector-wrap">
+    <div class="track-selector-label">Choose your career track</div>
+    <div class="track-selector-grid">
+      <a class="track-card" href="FDE-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🚀</span><div class="track-name">Forward Deployed Engineer</div><div class="track-meta">15 modules · ~168 hrs · AI + Cloud</div></a>
+      <a class="track-card" href="Network-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🌐</span><div class="track-name">Network Engineer</div><div class="track-meta">14 modules · ~120 hrs · Cisco · Palo Alto · F5</div></a>
+      <a class="track-card active" href="DevOps-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">⚙️</span><div class="track-name">DevOps Engineer</div><div class="track-meta">10 modules · Jenkins · Docker · K8s · Terraform</div></a>
+      <a class="track-card" href="Python-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">🐍</span><div class="track-name">Full Stack Python</div><div class="track-meta">8 modules · ~20 hrs · Python + AI/Networking</div></a>
+      <a class="track-card" href="DataEngineer-Pathfinder-By_TheSaarathiai-Preview.html"><span class="track-icon">📊</span><div class="track-name">Data Engineer</div><div class="track-meta">Spark · Kafka · Airflow · AWS · GCP</div></a>
+    </div>
+  </div>
+
+  <div class="gap-banner">DevOps engineers bridge development and operations — demand has never been higher in 2026. This curriculum covers Linux, cloud, CI/CD, containers, and IaC using real enterprise training content.</div>
+
+  <div class="section-label">DevOps engineer roadmap — 4 phases</div>
+  <div class="roadmap" style="grid-template-columns:repeat(4,1fr)">
+    <div class="rp rp-1"><div class="rp-phase">Phase 1</div><div class="rp-title">Foundations</div><div class="rp-skills">Linux · Git · GitOps · Shell Scripting</div></div>
+    <div class="rp rp-2"><div class="rp-phase">Phase 2</div><div class="rp-title">Cloud & CI/CD</div><div class="rp-skills">AWS · GCP · Jenkins · SonarQube · Nexus</div></div>
+    <div class="rp rp-3"><div class="rp-phase">Phase 3</div><div class="rp-title">Containers & IaC</div><div class="rp-skills">Docker · Kubernetes · Helm · Terraform · Ansible</div></div>
+    <div class="rp rp-4"><div class="rp-phase">Phase 4</div><div class="rp-title">Production</div><div class="rp-skills">Datadog · Monitoring · DevSecOps · Fortify/ZAP</div></div>
+  </div>
+
+  <div class="tabs">
+    <a class="tab" href="#sec-modules" data-target="sec-modules">All modules</a>
+    <a class="tab" href="#sec-assess" data-target="sec-assess">Skill check</a>
+    <a class="tab" href="#sec-tshape" data-target="sec-tshape">T-shaped skills</a>
+    <a class="tab" href="#sec-port" data-target="sec-port">Portfolio</a>
+  </div>
+
+  <div class="section-block" id="sec-modules">
+    <div class="section-label">All Modules</div>
+    <div id="modGrid"></div>
+  </div>
+
+  <div class="section-block" id="sec-assess">
+    <div class="section-label">Skill Check</div>
+    <p class="skill-intro">Rate your current level in each domain. The skill check shows what to skip and what to focus on first — so you spend time on gaps, not on things you already know.</p>
+    <div class="skill-grid" id="skillGrid"></div>
+    <div id="recOut"></div>
+  </div>
+
+  <div class="section-block" id="sec-tshape">
+    <div class="section-label">T-Shaped Skills</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:1.25rem">DevOps engineers need deep tooling depth AND broad execution skills across dev and ops. Both are required to get the role and keep it.</p>
+    <div class="tshape-grid">
+      <div class="tshape-col">
+        <div class="tshape-header th-tech">Technical depth</div>
+        <div class="tshape-list">
+          <div class="tshape-item">Linux + shell scripting<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Git branching / GitOps<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Jenkins CI/CD pipelines<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">Terraform HCL + state<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Ansible playbooks + roles<span class="ttag ttag-code">code</span></div>
+          <div class="tshape-item">Docker multi-container<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">Kubernetes + Helm<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">AWS EC2/VPC/IAM/S3/RDS<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">Datadog dashboards + alerts<span class="ttag ttag-infra">infra</span></div>
+          <div class="tshape-item">Fortify/RASP/ZAP<span class="ttag ttag-code">code</span></div>
+        </div>
+      </div>
+      <div class="tshape-col">
+        <div class="tshape-header th-human">Execution breadth</div>
+        <div class="tshape-list">
+          <div class="tshape-item">Translating dev requirements into infrastructure<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Change management enterprise<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Documentation runbooks/pipelines<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Cross-team dev+ops+security<span class="ttag ttag-people">people</span></div>
+          <div class="tshape-item">Incident response root cause<span class="ttag ttag-mindset">mindset</span></div>
+          <div class="tshape-item">Cloud cost optimization<span class="ttag ttag-mindset">mindset</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="interview-box">
+      <h4>DevOps interview reality</h4>
+      <p>DevOps interviews test both breadth and hands-on depth. Expect live pipeline tasks — set up a Jenkins job, write a Dockerfile, explain a Kubernetes deployment yaml. The hardest questions are architecture: "How would you build a zero-downtime deployment?" Know the why behind every tool, not just the how.</p>
+    </div>
+  </div>
+
+  <div class="section-block" id="sec-port">
+    <div class="section-label">Portfolio</div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:1.25rem">A working end-to-end pipeline is the single best proof of DevOps skill. Build this and document every stage.</p>
+    <div class="port-grid">
+      <div class="port-card">
+        <div class="port-card-header pc-1">Project 1 — CI Pipeline</div>
+        <div class="port-card-body"><ul>
+          <li>Code in GitHub triggers Jenkins build</li>
+          <li>SonarQube quality gate</li>
+          <li>Nexus artifact publishing</li>
+          <li>Docker image build and push to registry</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-2">Project 2 — Kubernetes Deployment</div>
+        <div class="port-card-body"><ul>
+          <li>Helm chart for the application</li>
+          <li>Deployment, Service, and Ingress manifests</li>
+          <li>HorizontalPodAutoscaler configured</li>
+          <li>Rollback tested and documented</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-3">Project 3 — Infrastructure as Code</div>
+        <div class="port-card-body"><ul>
+          <li>All AWS infrastructure provisioned with Terraform</li>
+          <li>Ansible playbook for server configuration</li>
+          <li>State managed and modules reused</li>
+          <li>Documented plan/apply workflow</li>
+        </ul></div>
+      </div>
+      <div class="port-card">
+        <div class="port-card-header pc-4">Project 4 — Monitoring and Security</div>
+        <div class="port-card-body"><ul>
+          <li>Datadog dashboard with alert conditions</li>
+          <li>DevSecOps scan integrated into the pipeline</li>
+          <li>Documented incident response runbook</li>
+          <li>End-to-end architecture diagram</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Built by TheSaarathiAI · 100% free · No paywalls · <a href="#">thesaarathiai.com</a>
+</div>
+
+<script>
+const MODS = [
+{num:"1",title:"Introduction to DevOps",phase:1,hrs:"~1 hr",phaseColor:"blue",
+ checks:["Can you explain the difference between Dev and Ops and why DevOps bridges them?","Do you understand CI/CD — Continuous Integration, Delivery, and Deployment?","Can you name the core DevOps tools and what each one does?"],
+ resources:[
+   {n:"KodeKloud — DevOps learning path (free)",src:"kodekloud.com",url:"https://kodekloud.com/learning-path/devops/",hrs:"free"},
+   {n:"freeCodeCamp — DevOps full course (YouTube)",src:"youtube.com/@freecodecamp",url:"https://www.youtube.com/@freecodecamp",hrs:"free"}
+ ]},
+{num:"2",title:"Linux Foundation",phase:1,hrs:"~5 hrs",phaseColor:"blue",
+ checks:["Can you navigate the filesystem, manage permissions, and use VIM?","Can you write a basic shell script with variables, loops, and conditionals?","Can you manage users, storage, and services with systemd?","Can you install and configure Nginx or Apache as a reverse proxy?","Can you install Nexus and Tomcat from the command line?"],
+ resources:[
+   {n:"Linux Journey — interactive free learning",src:"linuxjourney.com",url:"https://linuxjourney.com",hrs:"free"},
+   {n:"OverTheWire: Bandit — gamified Linux (free)",src:"overthewire.org",url:"https://overthewire.org/wargames/bandit/",hrs:"free"},
+   {n:"Red Hat Interactive Labs — free browser-based labs",src:"redhat.com",url:"https://www.redhat.com/en/interactive-labs",hrs:"free"}
+ ]},
+{num:"3",title:"Version Control and GitOps",phase:1,hrs:"~1.5 hrs",phaseColor:"blue",
+ checks:["Can you create a repo, branch, merge, tag, and rebase in Git?","Do you understand GitOps — declarative infrastructure managed via Git?","Can you resolve merge conflicts and manage a branching strategy?"],
+ resources:[
+   {n:"GitHub Skills — interactive Git courses (free)",src:"skills.github.com",url:"https://skills.github.com",hrs:"free"},
+   {n:"Git official documentation (free)",src:"git-scm.com",url:"https://git-scm.com",hrs:"free"}
+ ]},
+{num:"4",title:"Cloud Computing — AWS and GCP",phase:2,hrs:"~10 hrs",phaseColor:"green",
+ checks:["Can you configure AWS IAM users, roles, and least-privilege policies?","Can you launch and manage EC2 instances with auto-scaling and ELB?","Do you understand VPC, subnets, security groups, and NACLs on AWS?","Can you configure S3, EBS, and RDS on AWS?","Do you know CloudWatch for monitoring and CloudTrail for auditing?"],
+ resources:[
+   {n:"AWS Skill Builder — 600+ free digital courses",src:"skillbuilder.aws",url:"https://skillbuilder.aws",hrs:"free"},
+   {n:"Google Cloud Skills Boost — free learning paths",src:"cloudskillsboost.google",url:"https://cloudskillsboost.google",hrs:"free"}
+ ]},
+{num:"5",title:"Build Automation — Jenkins CI/CD",phase:2,hrs:"~3 hrs",phaseColor:"green",
+ checks:["Can you install Jenkins and configure it with plugins?","Can you create a Jenkins pipeline that builds, tests, and deploys?","Can you integrate Jenkins with GitHub and trigger builds on push?","Can you add SonarQube quality gates and Nexus artifact publishing?"],
+ resources:[
+   {n:"Jenkins official documentation (free)",src:"jenkins.io",url:"https://www.jenkins.io",hrs:"free"},
+   {n:"KodeKloud — Jenkins free course",src:"kodekloud.com",url:"https://kodekloud.com",hrs:"free"}
+ ]},
+{num:"6",title:"Terraform — Infrastructure as Code",phase:3,hrs:"~3 hrs",phaseColor:"amber",
+ checks:["Can you write Terraform HCL to provision EC2, S3, VPC, and IAM?","Do you understand state files — current state vs desired state?","Can you use Terraform modules and variables?","Do you know when to use Terraform vs Ansible — orchestration vs config management?","Can you run terraform init, plan, apply, and destroy?"],
+ resources:[
+   {n:"HashiCorp Learn — official Terraform tutorials (free)",src:"developer.hashicorp.com",url:"https://developer.hashicorp.com/terraform/tutorials",hrs:"free"},
+   {n:"KodeKloud — Terraform free course",src:"kodekloud.com",url:"https://kodekloud.com",hrs:"free"}
+ ]},
+{num:"7",title:"Ansible — Configuration Management",phase:3,hrs:"~3 hrs",phaseColor:"amber",
+ checks:["Can you write an Ansible playbook with tasks, handlers, and variables?","Do you understand inventory, hosts, and groups?","Can you create and use Ansible roles from Galaxy?","Can you write a playbook that installs and configures a web server end-to-end?"],
+ resources:[
+   {n:"Ansible official docs — getting started (free)",src:"docs.ansible.com",url:"https://docs.ansible.com/ansible/latest/getting_started/",hrs:"free"},
+   {n:"Red Hat Interactive Labs — Ansible (free)",src:"redhat.com",url:"https://www.redhat.com/en/interactive-labs",hrs:"free"}
+ ]},
+{num:"8",title:"Docker — Containerization",phase:3,hrs:"~3 hrs",phaseColor:"amber",
+ checks:["Can you write a multi-stage Dockerfile that produces a lean image?","Can you use docker-compose to run a multi-container application?","Can you push and pull images from Docker Hub?","Can you use docker exec, docker logs, and docker inspect to debug?"],
+ resources:[
+   {n:"Play with Docker — browser-based labs (free, no install)",src:"labs.play-with-docker.com",url:"https://labs.play-with-docker.com",hrs:"free"},
+   {n:"freeCodeCamp — Docker full course (free)",src:"freecodecamp.org",url:"https://www.freecodecamp.org/news/docker-full-course/",hrs:"free"}
+ ]},
+{num:"9",title:"Kubernetes — Container Orchestration",phase:3,hrs:"~3 hrs",phaseColor:"amber",
+ checks:["Can you deploy a Pod, Deployment, Service, and Ingress from scratch?","Can you configure HorizontalPodAutoscaler and roll back a deployment?","Can you deploy an application using a Helm chart?","Can you debug a failing pod with kubectl logs, describe, and exec?"],
+ resources:[
+   {n:"KillerCoda — browser-based K8s scenarios (free)",src:"killercoda.com",url:"https://killercoda.com/kubernetes",hrs:"free"},
+   {n:"Kubernetes.io — official interactive tutorials (free)",src:"kubernetes.io",url:"https://kubernetes.io/docs/tutorials/",hrs:"free"},
+   {n:"Helm official documentation (free)",src:"helm.sh",url:"https://helm.sh",hrs:"free"}
+ ],
+ capstone:{t:"Build a complete CI/CD pipeline",d:"Code in GitHub → Jenkins build → SonarQube quality gate → Docker image → push to registry → deploy to Kubernetes via Helm. Provision all AWS infrastructure with Terraform. Write Ansible playbook for server configuration. Add Datadog monitoring dashboard."}},
+{num:"10",title:"Monitoring and Production Operations",phase:4,hrs:"~2 hrs",phaseColor:"purple",
+ checks:["Can you add a host to Datadog and set up a monitoring dashboard?","Can you configure alerts with conditions and notification channels?","Do you know how to use security tools like Fortify, RASP, and ZAP?","Can you explain the difference between proactive and reactive monitoring?"],
+ resources:[
+   {n:"Datadog — free tier account and tutorials",src:"datadoghq.com",url:"https://www.datadoghq.com",hrs:"free"},
+   {n:"Grafana — free monitoring tutorials",src:"grafana.com",url:"https://grafana.com/tutorials",hrs:"free"},
+   {n:"Prometheus — official docs (free)",src:"prometheus.io",url:"https://prometheus.io",hrs:"free"}
+ ]}
+];
+
+const phaseColors = {
+  blue: {bg:"rgba(59,155,255,0.16)",fg:"#6CB4FF"},
+  green: {bg:"rgba(52,211,153,0.16)",fg:"#34D399"},
+  teal: {bg:"rgba(34,211,238,0.16)",fg:"#22D3EE"},
+  amber: {bg:"rgba(255,172,10,0.18)",fg:"#FFAC0A"},
+  purple: {bg:"rgba(167,139,250,0.18)",fg:"#A78BFA"}
+};
+
+function buildMods() {
+  const g = document.getElementById('modGrid');
+  MODS.forEach(m => {
+    const pc = phaseColors[m.phaseColor];
+    const div = document.createElement('div');
+    div.className = 'mod';
+    div.innerHTML = `
+      <div class="mod-head" onclick="this.parentNode.classList.toggle('open')">
+        <div class="mod-num" style="background:${pc.bg};color:${pc.fg}">${m.num}</div>
+        <div class="mod-info">
+          <div class="mod-title">${m.title}${m.isNew ? ' <span class="new-badge">NEW</span>' : ''}</div>
+          <div class="mod-meta">Phase ${m.phase}</div>
+        </div>
+        <div class="mod-right">
+          <div class="mod-hrs">${m.hrs}</div>
+          <div class="mod-chevron">⌄</div>
+        </div>
+      </div>
+      <div class="mod-body">
+        <div class="body-section">Competency checks — can you do these?</div>
+        <div class="checks">${m.checks.map(c => `<div class="check-item">${c}</div>`).join('')}</div>
+        <div class="body-section" style="margin-top:.875rem">Free resources — all links verified</div>
+        <div class="res-grid">${m.resources.map(r => `
+          <div class="res-card">
+            <div class="res-dot"></div>
+            <div class="res-info">
+              <div class="res-name">${r.n}</div>
+              <div class="res-src">${r.src}</div>
+            </div>
+            <div class="res-hrs">${r.hrs}</div>
+            <a class="res-link" href="${r.url}" target="_blank">Open ↗</a>
+          </div>`).join('')}
+        </div>
+        ${m.capstone ? `
+          <div class="body-section" style="margin-top:.875rem">Capstone project</div>
+          <div class="capstone">
+            <div class="capstone-label">Build this</div>
+            <div class="capstone-title">${m.capstone.t}</div>
+            <div class="capstone-desc">${m.capstone.d}</div>
+          </div>` : ''}
+      </div>`;
+    g.appendChild(div);
+  });
+}
+
+const SKILLS = [
+  {id:"linux",l:"Linux / Shell Scripting",mod:"2"},
+  {id:"git",l:"Git / GitOps",mod:"3"},
+  {id:"aws",l:"AWS / Cloud",mod:"4"},
+  {id:"jenkins",l:"Jenkins / CI/CD",mod:"5"},
+  {id:"terraform",l:"Terraform / IaC",mod:"6"},
+  {id:"ansible",l:"Ansible / Config Mgmt",mod:"7"},
+  {id:"docker",l:"Docker / Containers",mod:"8"},
+  {id:"k8s",l:"Kubernetes / Helm",mod:"9"},
+  {id:"monitoring",l:"Datadog / Monitoring",mod:"10"},
+  {id:"security",l:"DevSecOps / Security Tools",mod:"10"}
+];
+
+const sv = {};
+function barColor(v) {
+  if (v >= 70) return "#34D399";
+  if (v >= 40) return "#3B9BFF";
+  return "#FB7185";
+}
+
+function buildSkills() {
+  const g = document.getElementById('skillGrid');
+  SKILLS.forEach(s => {
+    sv[s.id] = 50;
+    const d = document.createElement('div');
+    d.className = 'skill-item';
+    d.innerHTML = `
+      <label>${s.l} <span class="sk-pct" id="pct-${s.id}">50%</span></label>
+      <input type="range" min="0" max="100" value="50" step="10" oninput="upSk('${s.id}',this.value)">
+      <div class="sk-bar-wrap"><div class="sk-bar" id="bar-${s.id}" style="width:50%;background:#3B9BFF"></div></div>`;
+    g.appendChild(d);
+  });
+  renderRec();
+}
+
+function upSk(id, v) {
+  sv[id] = parseInt(v);
+  const bar = document.getElementById('bar-'+id);
+  bar.style.width = v + '%';
+  bar.style.background = barColor(parseInt(v));
+  document.getElementById('pct-'+id).textContent = v + '%';
+  renderRec();
+}
+
+function renderRec() {
+  const skip = [], focus = [];
+  SKILLS.forEach(s => {
+    if (sv[s.id] >= 70) skip.push(s.l + ' (Module ' + s.mod + ')');
+    else if (sv[s.id] < 40) focus.push(s.l + ' → start with Module ' + s.mod);
+  });
+  const out = document.getElementById('recOut');
+  out.innerHTML = `
+    <div class="rec-box rec-focus">
+      <div class="rec-title">Focus on these first</div>
+      ${focus.length ? focus.map(f => `<div class="rec-item">→ ${f}</div>`).join('') : '<div class="rec-item" style="color:#9BA9C4">Your baseline looks solid — proceed sequentially through the modules.</div>'}
+    </div>
+    ${skip.length ? `
+    <div class="rec-box rec-skip">
+      <div class="rec-title">Skip or skim</div>
+      ${skip.map(s => `<div class="skip-item">${s}</div>`).join('')}
+    </div>` : ''}`;
+}
+
+const navTabs = document.querySelectorAll('.tab');
+const sections = document.querySelectorAll('.section-block');
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navTabs.forEach(t => t.classList.toggle('active', t.dataset.target === entry.target.id));
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => spy.observe(s));
+
+buildMods();
+buildSkills();
+</script>
+</body>
+</html>
