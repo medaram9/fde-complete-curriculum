@@ -16,7 +16,7 @@ Paid courses charge thousands of dollars and gatekeep the good stuff. This teach
 | Track | Content | Modules | Hours | Open |
 |---|---|---|---|---|
 | 🚀 Forward Deployed Engineer | AI · LangGraph · Vertex AI · MCP · Azure Foundry · Cost · Security | 15 | ~168 hrs | [Open](./FDE-Pathfinder-By_TheSaarathiai-Preview.html) |
-| 🌐 Network Engineer | Cisco · Juniper · Palo Alto · F5 · ACI · GCP | 14 | ~120 hrs | [Open](./Network-Pathfinder-By_TheSaarathiai-Preview.html) |
+| 🌐 Network Engineer | Cisco · Juniper · Palo Alto · F5 · ACI · GCP | 14 | ~65 hrs | [Open](./Network-Pathfinder-By_TheSaarathiai-Preview.html) |
 | ⚙️ DevOps Engineer | Linux · Jenkins · Docker · K8s · Terraform · Ansible | 10 | ~35 hrs | [Open](./DevOps-Pathfinder-By_TheSaarathiai-Preview.html) |
 | 🐍 Full Stack Python | Python Core · OOP · Decorators · AI · Networking | 8 | ~20 hrs | [Open](./Python-Pathfinder-By_TheSaarathiai-Preview.html) |
 | 📊 Data Engineer | Spark · Kafka · Airflow · dbt · AWS · GCP | 12 | ~80 hrs | [Open](./DataEngineer-Pathfinder-By_TheSaarathiai-Preview.html) |
